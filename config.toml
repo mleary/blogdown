@@ -33,7 +33,7 @@ canonifyurls = true
 
 [author]
   name = "Matt Leary"
-  bio = "Hi! I am an ~~aspiring~~ data scientist who enjoys working with data and building tools to solve problems or simply provide insights.  Previously I was in the Army, worked in public relations, and dabbled in public policy.  Proud father of the smartest 9 month old I know (to be fair, I only know two 9 month-old children) and avid Tottenham Hotspur supporter."
+  bio = "Hi! I am an ~~aspiring~~ data scientist who enjoys working with data and building tools to solve problems or simply provide insights.  Previously I was in the Army, worked in public relations, and dabbled in public policy.  Proud father of the smartest 9-month old I know (but I only know two 9 month-old children) and avid Tottenham Hotspur supporter."
   #"veteran, ~~aspiring~~ data scientist, tottenham hotspur supporter"
   job = "Data scientist & Father"
   location = "Richmond, Virginia"
