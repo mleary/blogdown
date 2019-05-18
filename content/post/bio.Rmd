@@ -1,9 +1,12 @@
 ---
-title: "Hello R Markdown"
-author: "Frida Gomam"
-date: 2015-07-23T21:13:14-05:00
-categories: ["R"]
-tags: ["R Markdown", "plot", "regression"]
+title: "Resume"
+author: "Matt Leary"
+categories: ["me"]
+tags: ["R Markdown", "Resume"]
+thumbnailImage: /img/mbl_profile2.jpg
+thumbnailImagePosition: right
+summary: Things I have done (and a professional photo)
+
 ---
 
 ```{r setup, include=FALSE}

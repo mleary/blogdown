@@ -26,22 +26,25 @@ canonifyurls = true
   post = "/:year/:month/:slug/"
 
 [taxonomies]
+  about = "about"
   tag = "tags"
   category = "categories"
   archive = "archives"
 
 [author]
   name = "Matt Leary"
-  bio = "Super bio with markdown support **COOL**"
-  job = "aspiring data scientist, football enthusiast"
+  bio = "Hi! I am an ~~aspiring~~ data scientist who enjoys working with data and building tools to solve problems or simply provide insights.  Previously I was in the Army, worked in public relations, and dabbled in public policy.  Proud father of the smartest 9 month old I know (to be fair, I only know two 9 month-old children) and avid Tottenham Hotspur supporter."
+  #"veteran, ~~aspiring~~ data scientist, tottenham hotspur supporter"
+  job = "Data scientist & Father"
   location = "Richmond, Virginia"
+  twitter = "alwaysleary"
   # Your Gravatar email. Overwrite `author.picture` everywhere in the blog
   #gravatarEmail = "mattleary311@gmail.com"
   # Your profile picture
   # Overwritten by your gravatar image if `author.gravatarEmail` is filled
-  picture = "https://cdn1.iconfinder.com/data/icons/ninja-things-1/1772/ninja-simple-512.png"
+  picture = "/img/mbl_profile2.jpg"
   # Your Twitter username without the @. E.g : thibaudlepretre
-  # twitter = "thibaudlepretre"
+  
   # Your google plus profile id. E.g : +ThibaudLepretre or 114625208755123718311
   # googlePlus = "+ThibaudLepretre"
 
@@ -53,30 +56,23 @@ canonifyurls = true
   pre = "<i class=\"sidebar-button-icon fa fa-lg fa-home\"></i>"
   url = "/"
 [[menu.main]]
-  weight = 5
+  weight = 2
   identifier = "about"
   name = "About"
-  pre = "<i class=\"sidebar-button-icon fa fa-lg fa-info-circle\"></i>"
+  pre = "<i class=\"sidebar-button-icon fa fa-lg fa-id-badge\"></i>"
   url = "/#about"
-[[menu.links]]
-  weight = 1
-  identifier = "github"
-  name = "GitHub"
-  pre = "<i class=\"sidebar-button-icon fa fa-lg fa-github\"></i>"
-  url = "https://github.com/mleary"
-#[[menu.main]]
-#  weight = 2
-#  identifier = "categories"
-#  name = "Categories"
-#  pre = "<i class=\"sidebar-button-icon fa fa-lg fa-bookmark\"></i>"
-#  url = "/categories"
-#[[menu.main]]
-#  weight = 3
-#  identifier = "tags"
-#  name = "Tags"
-#  pre = "<i class=\"sidebar-button-icon fa fa-lg fa-tags\"></i>"
-#  url = "/tags"
-
+[[menu.main]]
+  weight = 3
+  identifier = "categories"
+  name = "Categories"
+  pre = "<i class=\"sidebar-button-icon fa fa-lg fa-bookmark\"></i>"
+  url = "/categories"
+[[menu.main]]
+  weight = 3
+  identifier = "tags"
+  name = "Tags"
+  pre = "<i class=\"sidebar-button-icon fa fa-lg fa-tags\"></i>"
+  url = "/tags"
 [[menu.main]]
   weight = 4
   identifier = "archives"
@@ -85,11 +81,35 @@ canonifyurls = true
   url = "/archives"
 
 #[[menu.links]]
-#  weight = 2
-#  identifier = "stackoverflow"
-#  name = "Stack Overflow"
-#  pre = "<i class=\"sidebar-button-icon fa fa-lg fa-stack-overflow\"></i>"
-#  url = "https://stackoverflow.com/users/636472/kakawait"
+#  weight = 1
+#  identifier = "bio"
+#  name = "Bio"
+#  pre = "<i class=\"sidebar-button-icon fa fa-lg fa-id-card\"></i>"
+#  url = "/bio/"
+[[menu.links]]
+  weight = 1
+  identifier = "github"
+  name = "GitHub"
+  pre = "<i class=\"sidebar-button-icon fa fa-lg fa-github\"></i>"
+  url = "https://github.com/mleary"
+[[menu.links]]
+  weight = 2
+  identifier = "twitter"
+  name = "Twitter"
+  pre = "<i class=\"sidebar-button-icon fa fa-lg fa-twitter\"></i>"
+  url = "https://twitter.com/alwaysleary"
+[[menu.links]]
+  weight = 2
+  identifier = "linkedin"
+  name = "Linkedin"
+  pre = "<i class=\"sidebar-button-icon fa fa-lg fa-linkedin\"></i>"
+  url = "https://www.linkedin.com/in/mbleary/"
+[[menu.links]]
+  weight = 3
+  identifier = "email"
+  name = "Email Me"
+  pre= "<i class=\"sidebar-button-icon fa fa-lg fa-paper-plane\"></i>"
+  url = "mailto:mattleary311@gmail.com"
 
 
 [params]

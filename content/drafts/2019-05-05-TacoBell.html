@@ -1,0 +1,62 @@
+---
+title: Where's the nearest Taco Bell
+author: Matt Leary
+date: 2019-05-05
+categories: ["R"]
+tags: ["Geocoding"]
+thumbnailImage: /img/taco_bell.png
+thumbnailImagePosition: left
+summary: Experimenting with geocoding & working with spatial data (and ultimately finding the nearest taco bell)
+draft: true
+---
+
+
+
+<p>I had a classmate named Will who <strong>loved</strong> Taco Bell. He once gave a presentation about the virtues of Taco Bell and the comapnies history. It was both informative and brilliant.</p>
+<p>Years later I was working on a project that involved geospatial data and geocoding addresses. As I started to read up about the process</p>
+<div class="figure">
+<img src="/img/taco_bell.png" alt="Taco Bell’s in Atlanta in honor of Will" />
+<p class="caption">Taco Bell’s in Atlanta in honor of Will</p>
+</div>
+<pre class="r"><code>
+library(googleway)
+library(geosphere)
+library(tidyverse)
+## -- Attaching packages ----------------------------------------------------------------------- tidyverse 1.2.1 --
+## v ggplot2 3.1.0     v purrr   0.2.5
+## v tibble  2.0.1     v dplyr   0.7.8
+## v tidyr   0.8.2     v stringr 1.3.1
+## v readr   1.3.1     v forcats 0.3.0
+## -- Conflicts -------------------------------------------------------------------------- tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()
+
+
+nearest_locations &lt;- function(address, location_type) {
+  
+  latlon &lt;- google_geocode(address = address,
+                 key = apiKey,
+                 simplify = TRUE)
+
+  results &lt;- google_places(search_string = as.character(location_type),
+                location = c(latlon$results$geometry$location$lat,
+                             latlon$results$geometry$location$lng),
+                radius = 50000,
+                key = apiKey) 
+  
+  results &lt;- as.data.frame(results$result[,c(1,2,5)]) 
+  
+  dist &lt;- distm(data.frame(results$geometry$location$lng,
+                           results$geometry$location$lat),
+                          c(latlon$results$geometry$location$lng,
+                            latlon$results$geometry$location$lat))  / 1609.34
+
+  results &lt;- cbind(results %&gt;% select(name ,formatted_address),
+                   dist) %&gt;% 
+                  arrange(dist)
+  
+  results 
+  
+  return(results)
+  
+}</code></pre>
