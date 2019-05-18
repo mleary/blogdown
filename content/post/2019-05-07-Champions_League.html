@@ -59,7 +59,8 @@ knitr::kable(tbl, caption = &quot;A stark drop in performance&quot;, digits = 2)
 <p>To take it a step further, I watned to quickly plot the team’s performance and see how things changed.</p>
 <p>I didn’t find easy access to cummulative points by match week, so I decided to use ClubElo rating as a proxy for overall performance.</p>
 <p><strong>Note: I need to either find reliable points by match week for next year or FINALLY complete my webscraping project for the Premier League website and other sources. More to follow on that, unless I find access to a good data source.</strong></p>
-<p>##Visualising the performance of each club</p>
+<div id="visualising-the-performance-of-each-club" class="section level2">
+<h2>Visualising the performance of each club</h2>
 <p>I started by getting the EloClub rating for all four teams, and combing them into a single tidy data frame.</p>
 <pre class="r"><code>library(lubridate)
 
@@ -110,6 +111,7 @@ combined_teams %&gt;%
   theme_fivethirtyeight() +
   theme(legend.position = &quot;none&quot;)</code></pre>
 <p><img src="/post/2019-05-07-Champions_League_files/figure-html/Champions_League_Race-1.png" width="960" /></p>
+</div>
 <div id="improvements" class="section level2">
 <h2>Improvements:</h2>
 <p>This was a quick post and review of the clubs performance. Looking at the finished product there are a few improvements I would consider if I had more time.</p>
@@ -118,5 +120,8 @@ combined_teams %&gt;%
 <li><p>It would have been interesting to use club logos instead of geom_text, but I have never worked with inserting graphics with ggplot</p></li>
 <li><p>Manually creating the table - I would definately prefferd to scrape the data versus hard code it into the Rmarkdown, but again I need to find more reliable data</p></li>
 </ul>
-<p>##Conclusion</p>
+</div>
+<div id="conclusion" class="section level2">
+<h2>Conclusion:</h2>
+<p>I sincerly hope this was just a bad run of games and our form drastically improves.</p>
 </div>
