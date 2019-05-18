@@ -39,7 +39,7 @@ I didn't find easy access to cummulative points by match week, so I decided to u
 
 **Note: I need to either find reliable points by match week for next year or FINALLY complete my webscraping project for the Premier League website and other sources.  More to follow on that, unless I find access to a good data source.**
 
-##Visualising the performance of each club
+## Visualising the performance of each club
 
 I started by getting the EloClub rating for all four teams, and combing them into a single tidy data frame.
 
@@ -100,7 +100,7 @@ combined_teams %>%
 ```
 
 
-##Improvements:
+## Improvements:
 This was a quick post and review of the clubs performance.  Looking at the finished product there are a few improvements I would consider if I had more time.
 
 * For the future, I hope to have better data such as cummalative points per match week for each team. 
@@ -109,4 +109,6 @@ This was a quick post and review of the clubs performance.  Looking at the finis
 
 * Manually creating the table - I would definately prefferd to scrape the data versus hard code it into the Rmarkdown, but again I need to find more reliable data
 
-##Conclusion
+## Conclusion:
+
+I sincerly hope this was just a bad run of games and our form drastically improves.  
