@@ -1,37 +1,221 @@
 ---
-title: "New Page"
-categories:
-- category
-- subcategory
-tags:
-- tag1
-- tag2
-keywords:
-- tech
-comments:       false
-showMeta:       false
-showActions:    false
-#thumbnailImage: //example.com/image.jpg
+title: "Matt Leary's Resume"
+author: Matt
+date: "`r Sys.Date()`"
+output:
+  pagedown::html_resume:
+    # set it to true for a self-contained HTML page but it'll take longer to render
+    self_contained: false
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
-library(tidyverse)
-library(vitae)
-```
+Aside
+================================================================================
 
-# Welcome
 
-This is my resume, I'd like some jobs please.
+Contact Info {#contact}
+--------------------------------------------------------------------------------
 
-# Education
-```{r education}
-#edu <- rorcid::orcid_educations("0000-0003-1460-8722")
-#edu$`0000-0003-1460-8722`$`education-summary` %>%
-#  detailed_entries(
-#    what = `role-title`,
-#    when = glue::glue("{`start-date.year.value`} - {`end-date.year.value`}"),
-#    with = organization.name,
-#    where = organization.address.city
-#  )
-```
+- <i class="fa fa-map-marked-alt"></i> Richmond, Virginia
+- <i class="fa fa-linkedin"></i> [linkedin.com/mbleary](https://www.linkedin.com/in/mbleary/)
+- <i class="fa fa-github"></i> [github.com/mleary](https://github.com/mleary)
+- <i class="fa fa-phone"></i> +1 910-988-6368
+- <i class="fa fa-envelope"></i> mleary311@gmail.com
+
+
+
+Skills {#skills}
+--------------------------------------------------------------------------------
+
+- Statistical analysis
+
+- Statistical/machine learning models
+
+- Optimization methods
+
+
+Software {#skills}
+--------------------------------------------------------------------------------
+
+- Highly experienced with R & RStudio
+
+- Experienced with SQL & Python
+
+- Basic experience with Tableau, Qlik, JMP, Cognos, SPSS, SAS Enterprise Miner, and other statistical software
+
+- Works with structured and unstructured data retrieved from databases, APIs, XMLs, JSON, HTML 
+
+
+Interests {#skills}
+--------------------------------------------------------------------------------
+
+- Reproducible research and sharing exploratory analysis
+
+- Developing R packages to share company-specific functions and tools
+
+- Behavioral economics
+
+- Data visualization
+
+
+
+
+Main
+================================================================================
+
+Matt Leary{#title}
+--------------------------------------------------------------------------------
+
+### Data Scientist & avid Tottenham Hotspur Supporter 
+
+My past experience in public relations drives my belief that clear communication is paramount when implementing data science solutions. I enjoy the challenge of practically applying data science techniques to real-world problems.  
+
+
+Education {data-icon=graduation-cap data-concise=true}
+--------------------------------------------------------------------------------
+
+### Virginia Commonwealth University
+
+M.S. in Decision Analytics
+
+Richmond, Virginia
+
+
+### Virginia Commonwealth University
+
+M.B.A.
+
+Richmond, Virginia
+
+
+### Campbell Univesity
+
+B.S. in Political Science
+
+Buies Creek, North Carolina
+
+
+Professional Experience {data-icon=suitcase}
+--------------------------------------------------------------------------------
+
+### Associate Data Scientist
+
+Markel Corporation
+
+Richmond, VA
+
+2018 - Present
+
+- Develops machine learning models
+- Present findinds and reccomendations to business leaders
+- Conduct ad hoc analysis 
+
+
+
+### Legislative and Military Liaison 
+
+Virginia Department of Motor Vehicles
+
+Richmond,  VA
+
+2014 - 2018
+
+-	Advisor to the commissioner and senior executives of an 1,800-person organization, representing the commissioner at the state legislature and other senior-level meetings 
+-	Manages and develops programs that serve the military and veterans communities in Virginia, applying knowledge of applicable federal and state regulations
+-	Project manager for a study requested by the General Assembly, coordinating with external stakeholders to include state agencies and private businesses
+
+
+
+### Public Affairs Manager
+
+3rd Special Forces Group (Airborne)
+
+Fort Bragg, NC
+
+2012 - 2014
+
+-	Public affairs manager and advisor to senior executives of a 2,300-person organization conducting high-risk training and missions throughout the world
+-	Led a team of four to develop communications strategies and multimedia content 
+-	Provided media training and consequence management planning for more than 20 Special Forces units training off military property, coordinating with law enforcement to inform the public of training and mitigate potential negative publicity
+-	Executed a community relations program for the 2012 Soldier of the Year, coordinating with congressional aides, NFL football teams and city governments regarding civic engagements
+
+
+### Public Affairs Senior Manager
+
+U.S. Military Academy
+
+West Point, NY
+
+2010 - 2012
+
+-	Senior public affairs manager and advisor to the Director of Public Affairs and the Superintendent of the Academy, directly supervised two production specialists and administratively responsible for five
+-	Coordinated communications efforts in the Emergency Operations Center during large-scale exercises, two real-world emergencies and six high-visibility events with more than 40,000 people in attendance
+-	Developed the Academy’s social media and website communications plan, leading to the Academy placing third best among Top Social Media Colleges of 2011 by studentadvisor.com
+
+### Public Affairs Manager
+
+82nd Airborne Division
+
+Fort Bragg, NC
+
+2008 - 2010
+
+-	Selected over 11 peers to be the public affairs manager of a 4,000-person organization, supervised three direct reports, and advised executive staff 
+-	Supervised the deployment of five people and $300,000 worth of equipment to Afghanistan 
+-	Reviewed and edited more than 200 news stories and advisories prior to release
+
+
+### Public Affairs Specialist & Print Journalist
+
+82nd Airborne Division
+
+Fort Bragg, NC
+
+2005 - 2008
+
+-	Print journalist for a 4,000-person organization, documented training and deployed to Afghanistan for 13 months, spending six months documenting combat units, three months training Afghan Army National Army public affairs soldiers, and four months representing the Public Affairs Office at the tactical operations center
+-	Provided public affairs training for the second female awarded the Silver Star since World War II, coordinating with news outlets to include CBS News for coverage
+
+
+
+Awards and Certifications {data-icon=chalkboard-Award}
+--------------------------------------------------------------------------------
+
+### VCU Business School Alumni Award
+
+Awarded Disinguished Alumni Award for developing an alumni meetup group to share data science trends and best practices
+
+Richmond Virginia
+
+2019
+
+### Certified Scrum Master
+
+Completed Certified Scrum Master training 
+
+Reston Virginia  
+
+2014
+
+### Distinguished Leader and Honor Graduate
+
+Voted distinguished leader by classmates while attending the Army's Senior Leader's Course
+
+Fort Meade Maryland
+
+2013
+
+
+### Distinguished Honor Graduate
+
+Completed the Army's Public Affairs Advanced Leader's Course 
+
+Fort Meade Maryland
+
+2013
+
+::: aside
+This resume was generated in R with the pagedown package
+:::
+
+
+

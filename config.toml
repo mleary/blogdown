@@ -80,12 +80,12 @@ canonifyurls = true
   pre = "<i class=\"sidebar-button-icon fa fa-lg fa-archive\"></i>"
   url = "/archives"
 
-#[[menu.links]]
-#  weight = 1
-#  identifier = "bio"
-#  name = "Bio"
-#  pre = "<i class=\"sidebar-button-icon fa fa-lg fa-id-card\"></i>"
-#  url = "/bio/"
+[[menu.links]]
+  weight = 1
+  identifier = "bio"
+  name = "Bio"
+  pre = "<i class=\"sidebar-button-icon fa fa-lg fa-id-card\"></i>"
+  url = "https://mattleary-resume.netlify.com/"
 [[menu.links]]
   weight = 1
   identifier = "github"
