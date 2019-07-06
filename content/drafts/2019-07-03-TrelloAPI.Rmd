@@ -1,0 +1,19 @@
+---
+title: Accessing Trello with trelloR
+author: Matt Leary
+date: 2019-05-05
+categories: ["R"]
+tags: ["API"]
+thumbnailImage: /img/trello.png
+thumbnailImagePosition: left
+summary: With my team's use of Trello to track and monitor our workflow, I wanted to explore ways to capture that data via an API.  Without fail, there was an R package built by Jakub Chromec for that very purposes.
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE)
+
+```
+
+
+My work transitioned to an agile format and we've used Trello to track and monitor our sprints.  
+
