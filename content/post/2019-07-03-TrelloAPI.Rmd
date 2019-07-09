@@ -26,8 +26,6 @@ Since my work Trello account is password protected, I created a public board tha
 
 For now, here is the [public board I created](https://trello.com/b/ZA6mkMo2/totally-real-sprint-backlog) to mimic our work sprint board. 
 
-![Sample Trello board I created](img/trello.PNG)
-
 # My goal and our current use 
 
 My goal w#s to automate tracking the total hours not started, in progress, and completed once a day.  Some basic conventions we use on our Trello board are as follows:
@@ -56,7 +54,7 @@ library(lubridate)
 ```
 
 
-#Connect to Trello board & get data
+# Connect to Trello board & get data
 
 Next I connected to the Trello board and captured the neccesary data.  This was a little bit of trial and error, but the package has some very simple functions to get the data. 
 
@@ -106,6 +104,7 @@ get_hours <- function(string) {
 
 
 trello.df <- trello.df %>% 
+  filter(status != "Sprint # Backlog") %>% # filtering out info for a future update
   rowwise() %>% 
   mutate(hours = get_hours(task))
 

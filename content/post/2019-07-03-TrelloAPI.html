@@ -16,10 +16,6 @@ categories: ["R"]
 <p><strong>Disclaimer: trelloR is not affiliated, associated, authorized, endorsed by or in any way officially connected to Trello, Inc. (www.trello.com).</strong></p>
 <p>Since my work Trello account is password protected, I created a public board that uses the same conventions. From reading the package information,this process should be the same for accessing private Trello board excpet you need to include a Trello token.</p>
 <p>For now, here is the <a href="https://trello.com/b/ZA6mkMo2/totally-real-sprint-backlog">public board I created</a> to mimic our work sprint board.</p>
-<div class="figure">
-<img src="img/trello.PNG" alt="Sample Trello board I created" />
-<p class="caption">Sample Trello board I created</p>
-</div>
 </div>
 <div id="my-goal-and-our-current-use" class="section level1">
 <h1>My goal and our current use</h1>
@@ -44,7 +40,9 @@ categories: ["R"]
 library(trelloR)
 library(tidyverse)
 library(lubridate)</code></pre>
-<p>#Connect to Trello board &amp; get data</p>
+</div>
+<div id="connect-to-trello-board-get-data" class="section level1">
+<h1>Connect to Trello board &amp; get data</h1>
 <p>Next I connected to the Trello board and captured the neccesary data. This was a little bit of trial and error, but the package has some very simple functions to get the data.</p>
 <p>I wanted to track the hours by each list (i.e. “Not Started”, “In Progress”, “Completed”), so I ended up getting that information via the <code>get_board_lists</code> function and getting the individual card data with the <code>get_board_cards</code> function.</p>
 <pre class="r"><code># ![Sample Trello board I created](img/trello.PNG)
@@ -91,6 +89,7 @@ trello.df &lt;- current.lists %&gt;%
 
 
 trello.df &lt;- trello.df %&gt;% 
+  filter(status != &quot;Sprint # Backlog&quot;) %&gt;% # filtering out info for a future update
   rowwise() %&gt;% 
   mutate(hours = get_hours(task))</code></pre>
 </div>
@@ -99,11 +98,13 @@ trello.df &lt;- trello.df %&gt;%
 <pre class="r"><code>trello.df %&gt;% 
   group_by(status) %&gt;% 
   summarise(hours = sum(as.numeric(hours)))
-## # A tibble: 3 x 2
-##   status            hours
-##   &lt;chr&gt;             &lt;dbl&gt;
-## 1 Completed             4
-## 2 In Progress          23
-## 3 Tasks Not Started     5</code></pre>
+## # A tibble: 5 x 2
+##   status                hours
+##   &lt;chr&gt;                 &lt;dbl&gt;
+## 1 Impeded                  NA
+## 2 Tasks - Done              4
+## 3 Tasks - In Progress      23
+## 4 Tasks - Not Started       5
+## 5 Test - Transfer Tasks    NA</code></pre>
 <p>At this point I had enough initial data to provide my scrum master and hopefuly save him some time. There is definately room for improvement, and if it looks like this helpful I’ll update this into a more functional process and add any other info he might need</p>
 </div>
