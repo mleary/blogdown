@@ -1,0 +1,109 @@
+---
+title: "Accessing Trello with trelloR"
+author: "Matt Leary"
+date: '2019-07-05'
+summary: "With my team's use of Trello to track and monitor our workflow, I wantedto explore ways to capture that data via an API.  Without fail, there was an R package built by Jakub Chromec for that very purposes."
+tags: ["API"]
+categories: ["R"]
+---
+
+
+
+<div id="why-i-wanted-to-access-trello-data" class="section level1">
+<h1>Why I wanted to Access Trello data</h1>
+<p>My work transitioned to an agile format and we’ve used Trello to track and monitor our sprints. Our scrum master was tracking our hoursby looking at our Trello sprint board and manually updating a spreadshhet. Since we are constantly updating our sprint board, I thought I would look at ways to automate that process for him.</p>
+<p>As expected, someone had already built an R package for accessing data from Trello via the Trello API. Shout out to <a href="https://github.com/jchrom">Jakub Chromec</a> for creating the <a href="https://cran.r-project.org/web/packages/trelloR/vignettes/R_API_for_Trello.html">trelloR package</a>. I haven’t used the trelloR packakge, so my intent was to share my experience using it for the first time. I should note that the package had a pretty big disclaier:</p>
+<p><strong>Disclaimer: trelloR is not affiliated, associated, authorized, endorsed by or in any way officially connected to Trello, Inc. (www.trello.com).</strong></p>
+<p>Since my work Trello account is password protected, I created a public board that uses the same conventions. From reading the package information,this process should be the same for accessing private Trello board excpet you need to include a Trello token.</p>
+<p>For now, here is the <a href="https://trello.com/b/ZA6mkMo2/totally-real-sprint-backlog">public board I created</a> to mimic our work sprint board.</p>
+<div class="figure">
+<img src="img/trello.PNG" alt="Sample Trello board I created" />
+<p class="caption">Sample Trello board I created</p>
+</div>
+</div>
+<div id="my-goal-and-our-current-use" class="section level1">
+<h1>My goal and our current use</h1>
+<p>My goal w#s to automate tracking the total hours not started, in progress, and completed once a day. Some basic conventions we use on our Trello board are as follows:</p>
+<ul>
+<li>We create a card for each task we have</li>
+<li>Each task is assigned to one or multiple people by adding a memebr to the card</li>
+<li>Each task is assined to a story by adding a label to the card</li>
+<li>Each task has an estimated hours attached to it by adding a numeric value within braces <em>[Number goes here]</em> as the last part of the card.</li>
+</ul>
+</div>
+<div id="basic-setup" class="section level1">
+<h1>Basic setup</h1>
+<p>First I did some basic environment set up by using the here and checkpoint before loading the required packages. (Note: I ran into some issues with here and checkpoint so I commented those out for blogdown)</p>
+<pre class="r"><code># library(here)
+# library(checkpoint)
+# 
+# checkpoint(&quot;2019-07-01&quot;, R.version = &quot;3.5.2&quot;,
+#            checkpointLocation = here::here())
+
+
+library(trelloR)
+library(tidyverse)
+library(lubridate)</code></pre>
+<p>#Connect to Trello board &amp; get data</p>
+<p>Next I connected to the Trello board and captured the neccesary data. This was a little bit of trial and error, but the package has some very simple functions to get the data.</p>
+<p>I wanted to track the hours by each list (i.e. “Not Started”, “In Progress”, “Completed”), so I ended up getting that information via the <code>get_board_lists</code> function and getting the individual card data with the <code>get_board_cards</code> function.</p>
+<pre class="r"><code># ![Sample Trello board I created](img/trello.PNG)
+trello.board &lt;- trelloR::get_id_board(&quot;https://trello.com/b/ZA6mkMo2/totally-real-sprint-backlog&quot;)
+## Sending request...
+## Request URL:
+## https://api.trello.com/1/board/ZA6mkMo2?fields=name&amp;limit=1000
+## Converted into character vector of length 1 with name &quot;Totally Real Sprint Backlog &quot;
+
+#Get Lists 
+current.lists &lt;- get_board_lists(trello.board) 
+## Sending request...
+## Request URL:
+## https://api.trello.com/1/board/5d1b2ff197b7098b43ea0cba/lists?limit=1000
+
+#Get cards from the board
+cards &lt;- get_board_cards(trello.board)
+## Sending request...
+## Request URL:
+## https://api.trello.com/1/board/5d1b2ff197b7098b43ea0cba/cards?limit=1000</code></pre>
+</div>
+<div id="clean-and-prep-data" class="section level1">
+<h1>Clean and prep data</h1>
+<p>After checking the results it appears all the data I need was captured. I quickly selected the fields I needed and did some minor cleaning.</p>
+<pre class="r"><code>current.lists &lt;- current.lists %&gt;% 
+  select(id, status = name)
+
+cards &lt;- cards %&gt;%
+  select(idList, task = name, labels, dateLastActivity) %&gt;%
+  mutate(dateLastActivity = ymd_hms(dateLastActivity)) %&gt;% 
+  unnest(.) %&gt;%
+  select(-idBoard, -id, -color) %&gt;% 
+  rename(story = name)
+
+trello.df &lt;- current.lists %&gt;% 
+  left_join(cards, by = c(&quot;id&quot; = &quot;idList&quot;))
+  </code></pre>
+<p>One thing I needed to do was capture the individual hours. As mentioned, our hour estimates are tacked on to the end of our tasks within brackets. I used a quick helper function to get the hours into a new column.</p>
+<pre class="r"><code>get_hours &lt;- function(string) { 
+  str_sub(string, 
+     str_locate_all(string, &#39;\\[&#39;)[[1]][,1]+1, 
+     str_locate_all(string, &#39;\\]&#39;)[[1]][,1]-1)
+}
+
+
+trello.df &lt;- trello.df %&gt;% 
+  rowwise() %&gt;% 
+  mutate(hours = get_hours(task))</code></pre>
+</div>
+<div id="format-data-for-export" class="section level1">
+<h1>Format data for export</h1>
+<pre class="r"><code>trello.df %&gt;% 
+  group_by(status) %&gt;% 
+  summarise(hours = sum(as.numeric(hours)))
+## # A tibble: 3 x 2
+##   status            hours
+##   &lt;chr&gt;             &lt;dbl&gt;
+## 1 Completed             4
+## 2 In Progress          23
+## 3 Tasks Not Started     5</code></pre>
+<p>At this point I had enough initial data to provide my scrum master and hopefuly save him some time. There is definately room for improvement, and if it looks like this helpful I’ll update this into a more functional process and add any other info he might need</p>
+</div>

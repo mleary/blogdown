@@ -6,3 +6,4 @@ blogdown.Rproj
 Thumbs.db
 public/
 archive_examples/
+.checkpoint/
