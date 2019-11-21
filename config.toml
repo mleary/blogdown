@@ -33,14 +33,11 @@ canonifyurls = true
 
 [author]
   name = "Matt Leary"
-  bio = "Hi! I am an ~~aspiring~~ data scientist who enjoys working with data and building tools to solve problems or simply provide insights.  Previously I was in the Army, worked in public relations, and dabbled in public policy.  Proud father of the smartest 9-month old I know (but I only know two 9 month-old children) and avid Tottenham Hotspur supporter."
-  job = "Data scientist & Father"
+  bio = "Hi! I am a data scientist who enjoys working with data and building tools to solve problems or simply provide insights.  Previously I was in the Army, worked in public relations, and dabbled in public policy.  Proud father of the smartest toddler I know and avid Tottenham Hotspur supporter. COYS!"
+  job = "Data scientist"
   location = "Richmond, Virginia"
   twitter = "alwaysleary"
-  # Your Gravatar email. Overwrite `author.picture` everywhere in the blog
-  #gravatarEmail = "mattleary311@gmail.com"
   # Your profile picture
-  # Overwritten by your gravatar image if `author.gravatarEmail` is filled
   picture = "/img/mbl_profile2.jpg"
   # Your Twitter username without the @. E.g : thibaudlepretre
   
@@ -79,11 +76,11 @@ canonifyurls = true
   url = "/archives"
 
 #[[menu.links]]
-#  weight = 1
-#  identifier = "resume"
-#  name = "Resume"
-#  pre = "<i class=\"sidebar-button-icon fa fa-lg fa-id-card\"></i>"
-#  url = "https://mattleary-resume.netlify.com/"
+  weight = 2
+  identifier = "resume"
+  name = "Resume"
+  pre = "<i class=\"sidebar-button-icon fa fa-lg fa-id-card\"></i>"
+  url = "https://mattleary-resume.netlify.com/"
 [[menu.links]]
   weight = 2
   identifier = "github"
