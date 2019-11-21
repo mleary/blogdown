@@ -69,26 +69,26 @@ canonifyurls = true
   pre = "<i class=\"sidebar-button-icon fa fa-lg fa-tags\"></i>"
   url = "/tags"
 [[menu.main]]
-  weight = 4
+  weight = 3
   identifier = "archives"
   name = "Archives"
   pre = "<i class=\"sidebar-button-icon fa fa-lg fa-archive\"></i>"
   url = "/archives"
 
 #[[menu.links]]
-  weight = 2
+  weight = 4
   identifier = "resume"
   name = "Resume"
   pre = "<i class=\"sidebar-button-icon fa fa-lg fa-id-card\"></i>"
   url = "https://mattleary-resume.netlify.com/"
 [[menu.links]]
-  weight = 2
+  weight = 5
   identifier = "github"
   name = "GitHub"
   pre = "<i class=\"sidebar-button-icon fa fa-lg fa-github\"></i>"
   url = "https://github.com/mleary"
 #[[menu.links]]
-#  weight = 2
+#  weight = 6
 #  identifier = "twitter"
 #  name = "Twitter"
 #  pre = "<i class=\"sidebar-button-icon fa fa-lg fa-twitter\"></i>"
@@ -100,7 +100,7 @@ canonifyurls = true
   pre = "<i class=\"sidebar-button-icon fa fa-lg fa-linkedin\"></i>"
   url = "https://www.linkedin.com/in/mbleary/"
 [[menu.links]]
-  weight = 3
+  weight = 7
   identifier = "email"
   name = "Email Me"
   pre= "<i class=\"sidebar-button-icon fa fa-lg fa-paper-plane\"></i>"
