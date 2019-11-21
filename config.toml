@@ -76,7 +76,7 @@ canonifyurls = true
   url = "/archives"
 
 #[[menu.links]]
-  weight = 1
+  weight = 2
   identifier = "resume"
   name = "Resume"
   pre = "<i class=\"sidebar-button-icon fa fa-lg fa-id-card\"></i>"
