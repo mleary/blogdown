@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>API on Creative portfolio</title>
+    <link>/tags/api/</link>
+    <description>Recent content in API on Creative portfolio</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 05 Jul 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/api/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Accessing Trello with trelloR</title>
+      <link>/portfolio/2019-07-03-trelloapi/</link>
+      <pubDate>Fri, 05 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/portfolio/2019-07-03-trelloapi/</guid>
+      <description>With my team&amp;rsquo;s use of Trello to track and monitor our workflow, I wantedto explore ways to capture that data via an API.  Without fail, there was an R package built by Jakub Chromec for that very purposes.</description>
+    </item>
+    
+  </channel>
+</rss>

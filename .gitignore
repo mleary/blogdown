@@ -2,8 +2,6 @@
 .Rhistory
 .RData
 .Ruserdata
-blogdown.Rproj
-Thumbs.db
-public/
-archive_examples/
-.checkpoint/
+blogdown
+Thumbs.db 
+public/ # if using Netlify
