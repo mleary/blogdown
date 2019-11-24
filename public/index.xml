@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hi! I&#39;m Matt</title>
+    <link>/</link>
+    <description>Recent content on Hi! I&#39;m Matt</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 05 Jul 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Accessing Trello with trelloR</title>
+      <link>/portfolio/2019-07-03-trelloapi/</link>
+      <pubDate>Fri, 05 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/portfolio/2019-07-03-trelloapi/</guid>
+      <description>Why I wanted to Access Trello dataMy work transitioned to an agile format and we’ve used Trello to track and monitor our sprints. Our scrum master was tracking our hoursby looking at our Trello sprint board and manually updating a spreadshhet. Since we are constantly updating our sprint board, I thought I would look at ways to automate that process for him.
+As expected, someone had already built an R package for accessing data from Trello via the Trello API.</description>
+    </item>
+    
+    <item>
+      <title>Who want&#39;s to play in the Champions Leauge?</title>
+      <link>/portfolio/2019-05-07-champions_league/</link>
+      <pubDate>Fri, 17 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/portfolio/2019-05-07-champions_league/</guid>
+      <description>The 2018-2019 Premier League season has officially come to a close. While Manchester City and Liverpool battled for the top two positions, the race to secure Champions League football by finishing in 3rd and 4th place was up for grabs. Chelsea, Tottenham, Arsenal and Manchester United all had oppurtunites to move into the top four , but all four teams have struggled in form. In the end, Chelsea and Tottenham finsihed in 3rd and 4th, but it was certainly far from certain for both team.</description>
+    </item>
+    
+    <item>
+      <title>Hello R Markdown</title>
+      <link>/post/2015-07-23-r-rmarkdown/</link>
+      <pubDate>Thu, 23 Jul 2015 21:13:14 -0500</pubDate>
+      
+      <guid>/post/2015-07-23-r-rmarkdown/</guid>
+      <description>R MarkdownThis is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see http://rmarkdown.rstudio.com.
+You can embed an R code chunk like this:
+summary(cars)## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 26.00 ## Median :15.0 Median : 36.00 ## Mean :15.4 Mean : 42.98 ## 3rd Qu.</description>
+    </item>
+    
+  </channel>
+</rss>
