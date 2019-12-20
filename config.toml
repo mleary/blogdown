@@ -14,7 +14,7 @@ googleAnalytics = ""
   description = "Website for Matt Leary"
   copyright = "&copy;2019 Matt Leary"
   sidebarAbout = [
-    "My name is Matt and I am  a data scientist and avid Tottenham Hotspur fan.  This is my personal blog to both share things and document things so I can look them up later."
+    "I am a data scientist, Tottenham Hotspur fan, and proud minivan owner.  I created this website to share my work and help future Matt find code snippets and remember how I did things.  I plan to start writing better code documentation next week, I promise."
   ]
   # Contact page
      # Since this template is static, the contact form uses www.formspree.io as a

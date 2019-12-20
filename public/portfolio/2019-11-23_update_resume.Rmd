@@ -1,0 +1,17 @@
+---
+title: "Buidling my resume with R & pagedown"
+author: "Matt Leary"
+date: 2019-11-27
+draft: TRUE
+image: "img/portfolio/resume.png"
+showonlyimage: true
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE)
+knitr::opts_chunk$set(warning = FALSE)
+knitr::opts_chunk$set(message = FALSE)
+
+```
+

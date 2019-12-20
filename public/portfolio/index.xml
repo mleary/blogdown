@@ -6,18 +6,27 @@
     <description>Recent content in Portfolios on Hi! I&#39;m Matt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 05 Jul 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 27 Nov 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/portfolio/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Accessing Trello with trelloR</title>
+      <title>Buidling my resume with R &amp; pagedown</title>
+      <link>/portfolio/2019-11-23_update_resume/</link>
+      <pubDate>Wed, 27 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/portfolio/2019-11-23_update_resume/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Automating Trello updates with R</title>
       <link>/portfolio/2019-07-03-trelloapi/</link>
-      <pubDate>Fri, 05 Jul 2019 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 13 Jul 2019 00:00:00 +0000</pubDate>
       
       <guid>/portfolio/2019-07-03-trelloapi/</guid>
-      <description>Why I wanted to Access Trello dataMy work transitioned to an agile format and we’ve used Trello to track and monitor our sprints. Our scrum master was tracking our hoursby looking at our Trello sprint board and manually updating a spreadshhet. Since we are constantly updating our sprint board, I thought I would look at ways to automate that process for him.
+      <description>My work transitioned to an agile format and we’ve used Trello to track and monitor our sprints. Our scrum master was tracking our hours by looking at our Trello sprint board and manually updating a spreadshhet. Since we are constantly updating our sprint board, I thought I would look at ways to automate that process for him.
 As expected, someone had already built an R package for accessing data from Trello via the Trello API.</description>
     </item>
     
