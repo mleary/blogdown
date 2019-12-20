@@ -2,7 +2,7 @@
 <html lang="en-us">
 <head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Accessing Trello with trelloR</title>
+<title>Automating Trello updates with R</title>
 <meta name="description" content="Website for Matt Leary">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="all,follow">
@@ -39,7 +39,7 @@
   <div class="sidebar-content">
     <h1 class="sidebar-heading"><a href="/">Hi! I&#39;m Matt</a></h1>
     
-      <p class="sidebar-p">My name is Matt and I am  a data scientist and avid Tottenham Hotspur fan.  This is my personal blog to both share things and document things so I can look them up later.</p>
+      <p class="sidebar-p">I am a data scientist, Tottenham Hotspur fan, and proud minivan owner.  I created this website to share my work and help future Matt find code snippets and remember how I did things.  I plan to start writing better code documentation next week, I promise.</p>
     
     <ul class="sidebar-menu">
       
@@ -102,18 +102,15 @@
   <div class="row">
     <div class="col-lg-8">
       <div class="content-column-content">
-         <h1>Accessing Trello with trelloR</h1>
+         <h1>Automating Trello updates with R</h1>
          
 
 
-<div id="why-i-wanted-to-access-trello-data" class="section level1">
-<h1>Why I wanted to Access Trello data</h1>
-<p>My work transitioned to an agile format and we’ve used Trello to track and monitor our sprints. Our scrum master was tracking our hoursby looking at our Trello sprint board and manually updating a spreadshhet. Since we are constantly updating our sprint board, I thought I would look at ways to automate that process for him.</p>
+<p>My work transitioned to an agile format and we’ve used Trello to track and monitor our sprints. Our scrum master was tracking our hours by looking at our Trello sprint board and manually updating a spreadshhet. Since we are constantly updating our sprint board, I thought I would look at ways to automate that process for him.</p>
 <p>As expected, someone had already built an R package for accessing data from Trello via the Trello API. Shout out to <a href="https://github.com/jchrom">Jakub Chromec</a> for creating the <a href="https://cran.r-project.org/web/packages/trelloR/vignettes/R_API_for_Trello.html">trelloR package</a>. I haven’t used the trelloR packakge, so my intent was to share my experience using it for the first time. I should note that the package had a pretty big disclaier:</p>
 <p><strong>Disclaimer: trelloR is not affiliated, associated, authorized, endorsed by or in any way officially connected to Trello, Inc. (www.trello.com).</strong></p>
 <p>Since my work Trello account is password protected, I created a public board that uses the same conventions. From reading the package information,this process should be the same for accessing private Trello board excpet you need to include a Trello token.</p>
 <p>For now, here is the <a href="https://trello.com/b/ZA6mkMo2/totally-real-sprint-backlog">public board I created</a> to mimic our work sprint board.</p>
-</div>
 <div id="my-goal-and-our-current-use" class="section level1">
 <h1>My goal and our current use</h1>
 <p>My goal w#s to automate tracking the total hours not started, in progress, and completed once a day. Some basic conventions we use on our Trello board are as follows:</p>
