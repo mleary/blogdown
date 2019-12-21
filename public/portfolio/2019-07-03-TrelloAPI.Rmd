@@ -1,8 +1,12 @@
 ---
-title: "Automating Trello updates with R"
+title: "Accessing Trello with trelloR"
 author: "Matt Leary"
+<<<<<<< HEAD
 date: 2019-07-13
 draft: FALSE
+=======
+date: 2019-07-05
+>>>>>>> parent of 9ed27c1... Merge pull request #6 from mleary/new-format
 image: "img/portfolio/trello.gif"
 showonlyimage: true
 
@@ -15,8 +19,9 @@ knitr::opts_chunk$set(message = FALSE)
 
 ```
 
+# Why I wanted to Access Trello data
 
-My work transitioned to an agile format and we've used Trello to track and monitor our sprints.  Our scrum master was tracking our hours by looking at our Trello sprint board and manually updating a spreadshhet.  Since we are constantly updating our sprint board, I thought I would look at ways to automate that process for him.  
+My work transitioned to an agile format and we've used Trello to track and monitor our sprints.  Our scrum master was tracking our hoursby looking at our Trello sprint board and manually updating a spreadshhet.  Since we are constantly updating our sprint board, I thought I would look at ways to automate that process for him.  
 
 As expected, someone had already built an R package for accessing data from Trello via the Trello API.  Shout out to [Jakub Chromec](https://github.com/jchrom) for creating the [trelloR package](https://cran.r-project.org/web/packages/trelloR/vignettes/R_API_for_Trello.html).  I haven't used the trelloR packakge, so my intent was to share my experience using it for the first time.  I should note that the package had a pretty big disclaier:
 
