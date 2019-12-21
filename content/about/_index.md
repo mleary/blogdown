@@ -14,9 +14,9 @@ roles I worked on policy issues for a government agency and served nine years in
 the Army working in public affairs.
 
 
-For more information on me you can check out my resume, which I made with R & 
-the pagedown package, 
-<a href="https://mattleary-resume.netlify.com/" target="_blank">on my github page</a>.  
+For more information on me you can check out my 
+<a href="https://mattleary-resume.netlify.com/" target="_blank">resume</a>, which I made with 
+the pagedown package in R.  
 
 Also, here is a photo of my daughter, just because she is awesome and adorable.
 
