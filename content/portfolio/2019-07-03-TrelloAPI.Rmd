@@ -1,12 +1,7 @@
 ---
 title: "Accessing Trello with trelloR"
 author: "Matt Leary"
-<<<<<<< HEAD
 date: 2019-07-13
-draft: FALSE
-=======
-date: 2019-07-05
->>>>>>> parent of 9ed27c1... Merge pull request #6 from mleary/new-format
 image: "img/portfolio/trello.gif"
 showonlyimage: true
 
