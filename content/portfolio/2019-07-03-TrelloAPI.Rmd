@@ -2,7 +2,7 @@
 title: "Automating Trello updates with R"
 author: "Matt Leary"
 date: 2019-07-13
-draft: TRUE
+draft: FALSE
 image: "img/portfolio/trello.gif"
 showonlyimage: true
 
