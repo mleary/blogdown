@@ -3,4 +3,10 @@
 .RData
 .Ruserdata
 blogdown
-Thumbs.db  
+public\
+Thumbs.db
+.httr-oauth
+*.utf8.md
+*.knit.md
+
+
