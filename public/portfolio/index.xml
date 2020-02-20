@@ -6,10 +6,19 @@
     <description>Recent content in Portfolios on Hi! I&#39;m Matt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 13 Jul 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 04 Jan 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/portfolio/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Creating my resume with the pagedown package</title>
+      <link>/portfolio/2020-01-04-pagedown_resume/</link>
+      <pubDate>Sat, 04 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/portfolio/2020-01-04-pagedown_resume/</guid>
+      <description>Yihui Xie &amp;amp; Romain Lesur’s pagedown package allows users to create paged HTML documents that can be easily printed as PDFs. This includes RMarkdown templates that let you create letters, business cards, and most importantly resumes. I previously explored using pagedown for my resume and was impressed with the unique look it provided. That said, I never actually finished my exploration and I recently wanted to go back to pagedown and create a new resume.</description>
+    </item>
     
     <item>
       <title>Accessing Trello with trelloR</title>
