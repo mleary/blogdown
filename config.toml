@@ -28,7 +28,7 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
   description = "Website for Matt Leary"
   copyright = "&copy;2019 Matt Leary"
   sidebarAbout = [
-    "I am a data scientist, Tottenham Hotspur fan, and proud minivan owner.  I created this website to share my work and help future Matt find code snippets and remember how I did things.  I plan to start writing better code documentation next week, I promise."
+    "I am a data scientist, Tottenham Hotspur fan, Veteran, and proud minivan owner.  I created this website to share my work and help future Matt find code snippets and remember how I did things."
   ]
   # Contact page
      # Since this template is static, the contact form uses www.formspree.io as a
@@ -40,7 +40,7 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
      # - set your email address under 'email' below
      # - upload the generated site to your server
      # - send a dummy email yourself to confirm your account
-     # - click the confirm link in the email from www.formspree.io
+     # - click the confirm link in the email from c
      # - you're done. Happy mailing!
   email = "matt.leary@protonmail.com"
 
@@ -60,7 +60,7 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
   url = "contact/"
 
   [params.social]
-  email         = "matt.leary@protonmail.com"
+  # email         = "matt.leary@protonmail.com"
   twitter       = "https://twitter.com/alwaysleary"
   linkedin      = "https://www.linkedin.com/in/mbleary/"
   github        = "https://github.com/mleary"
