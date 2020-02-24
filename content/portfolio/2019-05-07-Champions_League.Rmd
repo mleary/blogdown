@@ -1,5 +1,5 @@
 ---
-title: Who want's to play in the Champions Leauge?
+title: Who wants to play in the Champions Leauge?
 author: Matt Leary
 date: 2019-05-17
 image: "img/portfolio/epl.jpg"
