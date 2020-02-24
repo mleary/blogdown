@@ -1,27 +1,18 @@
 ---
 date: "2016-11-05T21:05:33+05:30"
-title: About me
+title: About me, Matt Leary (he/him)
 ---
 
 I am a data scientist working in the insurance industry, proud father of an awesome
-tiny human, and an avid Tottenham Hotspur fan[^1]. 
+tiny human, and avid Tottenham Hotspur fan[^1].  I previously worked in public policy and public relations, and I was also in the US Army for nine years. Fun fact, you run and workout a LOT less when no one yells at you for not doing those things. I currently spend my free time singing Baby Shark or talking about Elmo.
 
-
-I enjoy working with data to solve business problems and build tools that help
-people work more efficiently. The best part of working in data science is the 
-oppurtunity to continuosly learn as new projects and problems arise.  In previous 
-roles I worked on policy issues for a government agency and served nine years in 
-the Army working in public affairs.
-
-
-For more information on me you can check out my 
-<a href="https://www.mattleary.com/resume/" target="_blank">resume</a>, which I made with 
-the pagedown package in R.  
+For more information on my work experience you can check out my LinkedIn profile or [resume](https://www.mattleary.com/resume/){target="_blank"}, which I made with 
+the pagedown package in R. If for some reason you want to contact me (remember, most non work conversations involve a Seasame Street character), shoot me an email at <matt.leary@protonmail.com>.
 
 Also, here is a photo of my daughter, just because she is awesome and adorable.
 
 ![Awesome Daughter][2]
 
-[^1]: *We've got Alli, Dele Alli, I just don't think you understand.*
+[^1]: *We've got Alli, Dele Alli, I just don't think you understand.  He only cost 5 mil, he's better than Ozil, we've got Dele Alli*
 
 [2]: /img/favicon.png

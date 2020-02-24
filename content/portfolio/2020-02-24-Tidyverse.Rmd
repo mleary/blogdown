@@ -1,0 +1,43 @@
+---
+title: "Tidyverse tips & featuers I forget about"
+author: "Matt Leary"
+date: '2020-03-01'
+showonlyimage: yes
+image: img/portfolio/tidyverseLogo.png
+drat: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE,
+                      warning  = FALSE,
+                      message  = FALSE)
+
+library(tidyverse)
+
+```
+
+
+[Link Title Here](/{link1})
+
+## Section 1
+
+## Section 2 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Section 3{link1}
+

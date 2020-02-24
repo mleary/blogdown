@@ -25,8 +25,8 @@ I had four main goals with this project:
 
 *  Create a resume format that was unique but not overly "flashy"
 *  Modify pagedown's base styling to work on my understanding of CSS
-*  Create two versions, an [HTML document](https://mattleary-resume.netlify.com/)for the web and a [basic pdf](https://github.com/mleary/resume/blob/master/mleary_resume.pdf) for printing
-*  Develop a process that made it easy to update my resume periodically [(see the repo here).](https://github.com/mleary/resume)
+*  Create two versions, an [HTML document](https://mattleary-resume.netlify.com/){target="_blank"} for the web and a [basic pdf](https://github.com/mleary/resume/blob/master/mleary_resume.pdf){target="_blank"} for printing
+*  Develop a process that made it easy to update my resume periodically [(see the repo here).](https://github.com/mleary/resume){target="_blank"}
 
 **Acknowledgement: Shout out to Nick Strayer, whose code was the basis for my format. I heavily borrowed from his code and approach. See his resume here: http://nickstrayer.me/cv/**
 
