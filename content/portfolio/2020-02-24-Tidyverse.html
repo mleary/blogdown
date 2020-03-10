@@ -1,21 +1,49 @@
 ---
-title: "Tidyverse tips & featuers I forget about"
+title: "Tidyverse tips I forget about"
 author: "Matt Leary"
 date: '2020-03-01'
 showonlyimage: yes
-image: img/portfolio/tidyverseLogo.png
+image: img/portfolio/tidyverse.png
 drat: true
 ---
 
 
 
-<p><a href="/%7Blink1%7D">Link Title Here</a></p>
-<div id="section-1" class="section level2">
-<h2>Section 1</h2>
+<p>The <a href="https://www.tidyverse.org"><code>tidyverse</code></a> is an opinionated collection of R packages designed for data science. I am a regular user of the <code>tidyverse</code>, and that means I know two things. First, almost any data manipulation, data visualization, or data modeling problem can be solved with the <code>tidyverse</code>. Second, I regularly have to search Google or StackOverflow to remember which package to use or the parameters of a given function.</p>
+<p>This post is a place for me to log my own tips for the <code>tidyverse</code> features and functions I use regularly. This way I can come to this page and CTRL + F to remind myself how to use them.</p>
+<p><a href="#getting_data">Getting Data</a><br />
+<a href="#data_prep">Data Cleaning</a><br />
+<a href="#data_manipulation">Data Manipulation</a><br />
+<a href="#data_vis">Data Vis</a><br />
+<a href="#building_models">Building models</a><br />
+<a href="#other_functions">Other Functions</a></p>
+<div id="getting-data" class="section level3">
+<h3><a id="getting_data"></a>Getting Data</h3>
 </div>
-<div id="section-2" class="section level2">
-<h2>Section 2</h2>
+<div id="data-cleaning" class="section level3">
+<h3><a id="data_cleaning"></a>Data Cleaning</h3>
+<ul>
+<li><code>tidyr::full_seq()</code>
+<ul>
+<li>fills in missing data of a sequence, such as values by date where certain days have no values (i.e. NULL or NA)</li>
+</ul></li>
+</ul>
 </div>
-<div id="section-3link1" class="section level2">
-<h2>Section 3{link1}</h2>
+<div id="data-manipulation" class="section level3">
+<h3><a id="data_manipulation"></a>Data Manipulation</h3>
+<ul>
+<li><code>forcats::fct_infreq()</code>
+<ul>
+<li>I love the <code>forcats</code> package. There, I’ve said it. But this function relevels a factor based on the count of observations. Very helpful when setting the factor levels for dummy variables or plotting charts (where you want the bars to be order from highest to lowest, for example.)</li>
+</ul></li>
+</ul>
+</div>
+<div id="data-vis" class="section level3">
+<h3><a id="data_vis"></a>Data Vis</h3>
+</div>
+<div id="building-models" class="section level3">
+<h3><a id="building_models"></a>Building models</h3>
+</div>
+<div id="other-functions" class="section level3">
+<h3><a id="other_functions"></a>Other Functions</h3>
 </div>
