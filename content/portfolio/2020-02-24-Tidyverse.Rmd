@@ -1,9 +1,9 @@
 ---
-title: "Tidyverse tips & featuers I forget about"
+title: "Tidyverse tips I forget about"
 author: "Matt Leary"
 date: '2020-03-01'
 showonlyimage: yes
-image: img/portfolio/tidyverseLogo.png
+image: img/portfolio/tidyverse.png
 drat: true
 ---
 
@@ -16,28 +16,37 @@ library(tidyverse)
 
 ```
 
+The [`tidyverse`](https://www.tidyverse.org) is an opinionated collection of R packages designed for data science.   I am a regular user of the `tidyverse`, and that means I know two things. First, almost any data manipulation, data visualization, or data modeling problem can be solved with the `tidyverse`.  Second, I regularly have to search Google or StackOverflow to remember which package to use or the parameters of a given function.
 
-[Link Title Here](/{link1})
+This post is a place for me to log my own tips for the `tidyverse` features and functions I use regularly. This way I can come to this page and CTRL + F to remind myself how to use them.
 
-## Section 1
-
-## Section 2 
-
-
-
-
-
-
+[Getting Data](#getting_data)  
+[Data Cleaning](#data_prep)  
+[Data Manipulation](#data_manipulation)  
+[Data Vis](#data_vis)  
+[Building models](#building_models)  
+[Other Functions](#other_functions)  
 
 
+### <a id="getting_data"></a>Getting Data
 
 
+### <a id="data_cleaning"></a>Data Cleaning
+
+* `tidyr::full_seq()`
+  * fills in missing data of a sequence, such as values by date where certain days have no values (i.e. NULL or NA)
 
 
+### <a id="data_manipulation"></a>Data Manipulation
+
+* `forcats::fct_infreq()`
+  * I love the `forcats` package.  There, I've said it. But this function relevels a factor based on the count of observations.  Very helpful when setting the factor levels for dummy variables or plotting charts (where you want the bars to be order from highest to lowest, for example.)
 
 
+### <a id="data_vis"></a>Data Vis
 
 
+### <a id="building_models"></a>Building models
 
-## Section 3{link1}
 
+### <a id="other_functions"></a>Other Functions
