@@ -30,6 +30,9 @@ This post is a place for me to log my own tips for the `tidyverse` features and 
 
 ### <a id="getting_data"></a>Getting Data
 
+* `readr` package
+  * many useful functions for getting data, such as read_csv or read_file
+
 
 ### <a id="data_cleaning"></a>Data Cleaning
 
@@ -40,7 +43,10 @@ This post is a place for me to log my own tips for the `tidyverse` features and 
 ### <a id="data_manipulation"></a>Data Manipulation
 
 * `forcats::fct_infreq()`
-  * I love the `forcats` package.  There, I've said it. But this function relevels a factor based on the count of observations.  Very helpful when setting the factor levels for dummy variables or plotting charts (where you want the bars to be order from highest to lowest, for example.)
+  * I love the `forcats` package.  There, I've said it. But this function relevels a factor based on the count of observations.  Very helpful when setting the factor levels for dummy variables or plotting charts (where you want the bars to be order from highest to lowest, for example.)  
+  
+* `tidyr::seperate()` & `tidyr::unite()`
+  * Combine two columns into one or split a column into two.
 
 
 ### <a id="data_vis"></a>Data Vis
@@ -48,5 +54,8 @@ This post is a place for me to log my own tips for the `tidyverse` features and 
 
 ### <a id="building_models"></a>Building models
 
-
+* [Julia Silge blogpost](https://juliasilge.com/blog/tuition-resampling) on `tidymodels` package
+  * Great, concise example of using `tidymodels`
+  
+  
 ### <a id="other_functions"></a>Other Functions
