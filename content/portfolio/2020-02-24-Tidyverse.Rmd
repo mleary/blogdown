@@ -21,7 +21,7 @@ The [`tidyverse`](https://www.tidyverse.org) is an opinionated collection of R p
 This post is a place for me to log my own tips for the `tidyverse` features and functions I use regularly. This way I can come to this page and CTRL + F to remind myself how to use them.
 
 [Getting Data](#getting_data)  
-[Data Cleaning](#data_prep)  
+[Data Cleaning](#data_cleaning)
 [Data Manipulation](#data_manipulation)  
 [Data Vis](#data_vis)  
 [Building models](#building_models)  
@@ -36,9 +36,16 @@ This post is a place for me to log my own tips for the `tidyverse` features and 
 
 ### <a id="data_cleaning"></a>Data Cleaning
 
-* `tidyr::full_seq()`
-  * fills in missing data of a sequence, such as values by date where certain days have no values (i.e. NULL or NA)
-
+* Append column names with  with `dplyr::rename`
+```{r}
+data.frame(col1 = 1, col2 = 2, col3 =3) %>% 
+  dplyr::rename_all(function(x) paste("prefix_", x))
+```
+*notice `rename_at` below, versus `rename_all` above*
+```{r}
+data.frame(col1_ignore = 1, col2_ending = 2, col3_ending =3) %>% 
+  dplyr::rename_at(vars(tidyr::ends_with("ending")), function(x) paste("prefix_", x))
+```
 
 ### <a id="data_manipulation"></a>Data Manipulation
 
@@ -46,11 +53,31 @@ This post is a place for me to log my own tips for the `tidyverse` features and 
   * I love the `forcats` package.  There, I've said it. But this function relevels a factor based on the count of observations.  Very helpful when setting the factor levels for dummy variables or plotting charts (where you want the bars to be order from highest to lowest, for example.)  
   
 * `tidyr::seperate()` & `tidyr::unite()`
-  * Combine two columns into one or split a column into two.
+  * combine two columns into one or split a column into two.
 
+
+* `tidyr::full_seq()`
+  * fills in missing data of a sequence, such as values by date where certain days have no values (i.e. NULL or NA)
+  
 
 ### <a id="data_vis"></a>Data Vis
 
+In this section I am including things that help make data pretty for tables or output, not just graphs and more standard visualizations.
+
+* `janitor::adorn_*`
+  * the `janitor` package also rocks much like the `forcats` package. I've used the `tabyl` function for quite some time, but I just found out i t has a series of functions that help round, create percents, etc., Example below.
+  
+```{r}
+data.frame(row = c(1,2), x = c(1,3), y = c(1,4)) %>% 
+  janitor::adorn_percentages("col") %>% 
+  janitor::adorn_pct_formatting()
+
+```
+  
+```{r}
+data.frame(x = 1.227, y = 2.375) %>% 
+  janitor::adorn_rounding(digits = 0, skip_first_col = FALSE)
+```
 
 ### <a id="building_models"></a>Building models
 
