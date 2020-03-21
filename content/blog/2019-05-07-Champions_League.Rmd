@@ -1,0 +1,110 @@
+---
+title: "Who wants to play in the Champions Leauge?"
+author: 'Matt Leary'
+date: 2019-05-17
+image: "img/portfolio/epl.jpg"
+showonlyimage: true
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE)
+```
+
+The 2018-2019 Premier League season has officially come to a close.  While Manchester City and Liverpool battled for the top two positions, the race to secure Champions League football by finishing in 3rd and 4th place was up for grabs.  Chelsea, Tottenham, Arsenal and Manchester United all had oppurtunites to move into the top four , but all four teams have struggled in form.  In the end, Chelsea and Tottenham finsihed in 3rd and 4th, but it was certainly far from certain for both team.s
+
+
+I decided to take a look and see how each team perfomance has dropped off. 
+
+```{r, warnings = FALSE}
+suppressMessages(library(tidyverse))
+
+tbl <- tibble(Team = c("Chelsea", "Tottenham", "Arsenal", "Manchester United"),
+              'Avg Points Per Game(1st 25 Matches)' = c(50/25, 60/25, 50/25, 51/25),
+              'Avg Points Per Game(last 12 Matches)' = c(22/12, 11/12, 20/12, 15/12)) %>% 
+      arrange(Team)
+
+knitr::kable(tbl, caption = "A stark drop in performance", digits = 2)             
+```
+
+As an avid Tottenham Hotspur supporter, I was pretty disappointed that we went from best performance to worst performance amongst the teams.  Not only that, our average points  per game dropped by 1.2 points per game!  In most cases we would have been overtaken, given our poor run of form, but fortunately the other teams were unable to  string together a strong run of matches.
+
+To take it a step further, I watned to quickly plot the team's performance and see how things changed.
+
+I didn't find easy access to cummulative points by match week, so I decided to use ClubElo rating as a proxy for overall performance.
+
+**Note: I need to either find reliable points by match week for next year or FINALLY complete my webscraping project for the Premier League website and other sources.  More to follow on that, unless I find access to a good data source.**
+
+## Visualising the performance of each club
+
+I started by getting the EloClub rating for all four teams, and combing them into a single tidy data frame.
+
+```{r, message=FALSE}
+library(lubridate)
+
+matchweek_26 <- as.Date("2019-02-08")
+start_date <- matchweek_26 -10
+current_date <- today()
+
+tottenham <- read_csv("http://api.clubelo.com/tottenham") %>% 
+  filter(From >= start_date, To <= current_date) 
+chelsea <- read_csv("http://api.clubelo.com/chelsea") %>% 
+  filter(From >= start_date, To <= current_date) 
+arsenal <- read_csv("http://api.clubelo.com/arsenal") %>% 
+  filter(From >= start_date, To <= current_date)
+manunited <- read_csv("http://api.clubelo.com/manunited") %>% 
+  filter(From >= start_date, To <= current_date)
+
+combined_teams <- bind_rows(arsenal, chelsea, manunited, tottenham)
+```
+
+Once I had the data in a tidy format, it was simple to just plot their performance with ggplot.  I wanted to see the change in performance in the last 12 match weeks and highlight the overall drop across all teams.
+
+
+```{r, "Champions_League_Race", fig.width= 10}
+library(ggthemes)
+
+#plot inputs
+club_colors <- c("#9C824A", "#034694", "#DA291C", "#132257")
+
+start_labels <-combined_teams[!duplicated(combined_teams$Club),] %>% 
+  mutate(x_position = min(To) - 5)
+
+end_labels <- combined_teams %>% 
+  arrange(desc(From))
+
+end_labels <- end_labels[!duplicated(end_labels$Club),] %>% 
+  mutate(x_position = max(To) + 5)
+
+#graph
+combined_teams %>% 
+  ggplot(aes(x = To, y = Elo, color = Club)) +
+  geom_line(size = 2.5) +
+  geom_vline(xintercept =  as.numeric(matchweek_26), size = 1.5, color = "green") +
+  geom_text(data = start_labels, aes(x = x_position, y = Elo, label = Club)) +
+  geom_text(data = end_labels, aes(x = x_position, y = Elo, label = Club)) +
+  scale_color_manual(values = club_colors) +
+  scale_x_date(date_labels="%Y-%B") +#, breaks = , labels = ) +
+  #scale_x_discrete("", limits = ) +
+  labs(y = NULL,
+       x = NULL,
+       title = "Who wants to play in the Champions League?",
+       subtitle = "Despite oppurtunites, no team searching for the top four has averaged 2 points per match for the last 12 matches",
+       caption = "Club performance based on Elo rating system (clubelo.com)") + 
+  theme_fivethirtyeight() +
+  theme(legend.position = "none")
+```
+
+
+## Improvements:
+This was a quick post and review of the clubs performance.  Looking at the finished product there are a few improvements I would consider if I had more time.
+
+* For the future, I hope to have better data such as cummalative points per match week for each team. 
+
+* It would have been interesting to use club logos instead of geom_text, but I have never worked with inserting graphics with ggplot
+
+* Manually creating the table - I would definately prefferd to scrape the data versus hard code it into the Rmarkdown, but again I need to find more reliable data
+
+## Conclusion:
+
+I sincerly hope this was just a bad run of games and our form drastically improves.  
