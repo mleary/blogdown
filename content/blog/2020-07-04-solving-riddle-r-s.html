@@ -1,0 +1,186 @@
+---
+title: "Solving Riddle(r)s"
+author: 'Matt Leary'
+date: '2020-07-04'
+image: img/portfolio/riddler.png
+showonlyimage: yes
+---
+
+
+
+<p>As I look back on my blog, I can see that I have written two blog posts in the past year. Clearly, I am killig it with this blog thing.</p>
+<p>I realized I could include some of my work solving Riddlers. For those unfamiliar, <a href="https://fivethirtyeight.com/tag/the-riddler/">fivethirtyeight</a> produces a regular puzzle challenge called The Riddler. While many can be solved with basic math and logic, I’ve used these as opportunities to practice/improve my coding in R and Python.</p>
+<p>Previously, I had a separate repo where I created a basic website with <code>{rmarkdown}</code>. This was largely exploratory and can be found here at <a href="https://mleary.github.io/538-Riddlers/">the website I created via github pages</a>.</p>
+<p>For this post, I will copy over a past Riddler puzzle for this post. Future posts will be fresh attempts looking at new Riddler challenges.</p>
+<div id="riddler-express-from-june-26-2020" class="section level2">
+<h2>Riddler Express from June 26, 2020:</h2>
+<p>URL: <a href="https://fivethirtyeight.com/features/can-you-connect-the-dots/" class="uri">https://fivethirtyeight.com/features/can-you-connect-the-dots/</a></p>
+<p>In Riddler City, the city streets follow a grid layout, running north-south and east-west. You’re driving north when you decide to play a little game. Every time you reach an intersection, you randomly turn left or right, each with a 50 percent chance.</p>
+<p>After driving through 10 intersections, what is the probability that you are still driving north?</p>
+<p>Extra credit: Now suppose that at every intersection, there’s a one-third chance you turn left, a one-third chance you turn right and a one-third chance you drive straight. After driving through 10 intersections, now what’s the probability that you are still driving north?And what are your chances of winning the prize?</p>
+</div>
+<div id="my-approach" class="section level2">
+<h2>My Approach:</h2>
+<p>Well for the first question, the answer is a 50% change of driving north. Given an even number of turns, you must be facing South or North with equal probability. For this, I’ll focus on the extra credit which is a little more complicated. Full disclosure, I rushed the last little bit.</p>
+<div id="setup" class="section level3">
+<h3>Setup</h3>
+<p>Lets generate some helper functions. I figure I need to create random turns based on the available diretions and then repeat the process 10 times. I quickly documented these helpers.</p>
+<pre class="r"><code>library(dplyr)
+options(stringsAsFactors = FALSE)
+
+# Generate valid turn options
+# Requires a character argument
+# returns a character vector
+turn_options &lt;- function(direction){
+  
+  if(!direction %in% c(&quot;North&quot;, &quot;East&quot;, &quot;South&quot;, &quot;West&quot;)){
+    message(&quot;Invalid Direction.  Try &#39;North&#39;, &#39;South&#39;, &#39;East&#39; or &#39;West&#39;&quot;)
+  } else {
+  if(direction == &quot;North&quot;){options &lt;- c(&quot;West&quot;, &quot;North&quot;, &quot;East&quot;)}
+  if(direction == &quot;East&quot;){options &lt;- c(&quot;North&quot;, &quot;East&quot;, &quot;South&quot;)}
+  if(direction == &quot;South&quot;){options &lt;- c(&quot;East&quot;, &quot;South&quot;, &quot;West&quot;)}
+  if(direction == &quot;West&quot;){options &lt;- c(&quot;South&quot;, &quot;West&quot;, &quot;North&quot;)}
+  return(options)
+  }
+}
+
+# Take a direction and  make a random turn
+# Requires a character input
+# Returns a character (direction you are heading)
+turn_random &lt;- function(direction) {
+  turn.options &lt;- turn_options(direction)
+  result &lt;- sample(turn.options, 1)
+  return(result)
+    
+}
+
+# Randomly turn ten times and see where you end up
+# Dont love while loop, but hey its quick
+turn_10_times &lt;- function(initial.direction = &quot;North&quot;){
+  
+  turn.result &lt;- turn_random(initial.direction)
+  count &lt;- 1
+  while(count &lt; 10){
+    turn.result &lt;- turn_random(turn.result)
+    count &lt;- count + 1
+  }
+  return(turn.result)
+}</code></pre>
+<p>Now that we have some helpers, lets generate some simulations. First, we’ll start by simply generating results, adn then seeing the perecnt change of driving North.</p>
+<pre class="r"><code>trial.count &lt;- 100000
+sim &lt;- tibble::tibble(
+  trial = 1:trial.count,
+  outcome = base::replicate(trial.count, turn_10_times())
+) 
+sim$outcome %&gt;% janitor::tabyl() %&gt;% janitor::adorn_pct_formatting()
+##      .     n percent
+##   East 24977   25.0%
+##  North 24949   24.9%
+##  South 24938   24.9%
+##   West 25136   25.1%
+result &lt;- sim %&gt;% 
+  summarise(chance.north = sum(ifelse(outcome == &quot;North&quot;, 1, 0)) / n())</code></pre>
+<p>Looks like there is a 0.25% chance of still heading north.</p>
+</div>
+</div>
+<div id="plot-paths" class="section level1">
+<h1>Plot Paths</h1>
+<p>For fun, I wanted to go one step further and visualize the path the car could take.</p>
+<div id="new-helper-functions" class="section level2">
+<h2>New Helper Functions</h2>
+<p>This was done quickly, and I spent less time documenting my code. There is LOADS of room for improvement here.</p>
+<pre class="r"><code>
+# Genenrate actual path of simulation
+# Lots of quick code at the end to create data format I wanted
+turn_10_times_path &lt;- function(initial.direction = &quot;North&quot;){
+  path &lt;- tibble::tibble(
+    start  = &quot;start&quot;,  
+    turn1  = turn_random(initial.direction),
+    turn2  = turn_random(turn1),
+    turn3  = turn_random(turn2),
+    turn4  = turn_random(turn3),
+    turn5  = turn_random(turn4),
+    turn6  = turn_random(turn5),
+    turn7  = turn_random(turn6),
+    turn8  = turn_random(turn7),
+    turn9  = turn_random(turn8),
+    turn10 = turn_random(turn9),
+  ) %&gt;% 
+    t() %&gt;% 
+    as.data.frame() %&gt;%
+    tibble::rownames_to_column() %&gt;% 
+    setNames(c(&quot;Turn&quot;, &quot;Path&quot;)) 
+  return(path)
+}
+
+add_x_coords &lt;- function(dataset, num.turns){
+  result.vector &lt;- c(0)
+  x &lt;- 0
+  for(row in 2:num.turns){
+    direction &lt;- dataset$Path[row]
+    if(direction == &quot;East&quot;){x &lt;- x + 1}
+    if(direction == &quot;West&quot;){x &lt;- x - 1}
+    result.vector &lt;- append(result.vector, x)
+  }
+  dataset &lt;- dataset %&gt;% 
+    mutate(x = result.vector)
+  return(dataset)
+}
+
+add_y_coords &lt;- function(dataset, num.turns){
+  result.vector &lt;- c(0)
+  y &lt;- 0
+  for(row in 2:num.turns){
+    direction &lt;- dataset$Path[row]
+    if(direction == &quot;North&quot;){y &lt;- y + 1}
+    if(direction == &quot;South&quot;){y &lt;- y - 1}
+    result.vector &lt;- append(result.vector, y)
+  }
+  dataset &lt;- dataset %&gt;% 
+    mutate(y = result.vector)
+  return(dataset)
+}
+
+generate_one_scenario &lt;- function(number.turns = 10, trial.input = 1){
+  dat &lt;- turn_10_times_path() %&gt;% 
+    add_x_coords(num.turns = number.turns+1) %&gt;% 
+    add_y_coords(num.turns = number.turns+1) %&gt;% 
+    mutate(trial = trial.input) %&gt;% 
+    select(trial, everything())
+  return(dat)
+}
+
+generate_many_trials &lt;- function(trial.count) {
+  df.out &lt;- generate_one_scenario()
+  trial &lt;- 1
+  for(trials in 1:(trial.count-1)){
+    trial &lt;- trial + 1
+    result.df &lt;- generate_one_scenario(trial.input = trial)
+    df.out &lt;- rbind(df.out, result.df)
+  }
+  return(df.out)
+}</code></pre>
+<pre class="r"><code>library(ggplot2)
+trial.count &lt;- 1000
+sim &lt;- generate_many_trials(trial.count)
+sim %&gt;% 
+  ggplot(aes(x, y, group = trial, color = trial)) + 
+  geom_path(alpha= 0.05) +
+  geom_point(aes(x,y), 
+             data = sim %&gt;% 
+               filter(Turn == &quot;turn10&quot;) %&gt;% 
+               add_count(x,y),
+             alpha = 0.02,
+             color=&quot;red&quot;) +
+  geom_point(aes(x = 0, y =0), color = &quot;darkgreen&quot;, size = 4.5) +
+  theme_minimal() +
+  xlim(-10, 10) +
+  ylim(-10, 10) +
+  labs(title = &quot;Path taken for each trial&quot;,
+       subtitle = &quot;Green dot represents starting point, red dots ending point.&quot;
+       ) +
+  theme(legend.position = &quot;none&quot;) </code></pre>
+<p><img src="/blog/2020-07-04-solving-riddle-r-s_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>There we go! It might be interesting to see the path from each trip, but for now I just have the start and ending points. It’s rough, but glad to have actually ‘written’ a blog post again.</p>
+</div>
+</div>
