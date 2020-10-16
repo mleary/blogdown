@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>538 Riddler - Can you parallel park?</title>
+<meta name="description" content="Website for Matt Leary">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="all,follow">
+<meta name="googlebot" content="index,follow,snippet,archive">
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:400,300,700,400italic">
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/owl.carousel.css">
+<link rel="stylesheet" href="/css/owl.theme.css">
+
+
+  <link href="/css/style.default.css" rel="stylesheet" id="theme-stylesheet">
+
+ 
+
+  
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  
+
+
+<link href="/css/custom.css" rel="stylesheet">
+<link rel="shortcut icon" href="/img/favicon.png">
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-155254638-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</head>
+<body>
+  <div id="all">
+      <div class="container-fluid">
+          <div class="row row-offcanvas row-offcanvas-left">
+              <div id="sidebar" class="col-xs-6 col-sm-4 col-md-3 sidebar-offcanvas">
+  <div class="sidebar-content">
+    <h1 class="sidebar-heading"><a href="/">Hi! I&#39;m Matt</a></h1>
+    
+      <p class="sidebar-p">I am a data scientist, Tottenham Hotspur fan, Veteran, and proud minivan owner.  I created this website to share my work and help future Matt find code snippets and remember how I did things.</p>
+    
+    <ul class="sidebar-menu">
+      
+        <li><a href="/blog/">Blog</a></li>
+      
+        <li><a href="/about/">About</a></li>
+      
+        <li><a href="/contact/">Get in touch</a></li>
+      
+    </ul>
+    <p class="social">
+  
+  
+  
+  <a href="https://twitter.com/alwaysleary" data-animate-hover="pulse" class="external twitter">
+    <i class="fa fa-twitter"></i>
+  </a>
+  
+  
+  
+  
+  <a href="https://www.linkedin.com/in/mbleary/" data-animate-hover="pulse" class="external">
+    <i class="fa fa-linkedin"></i>
+  </a>
+  
+  
+  
+  <a href="https://github.com/mleary" data-animate-hover="pulse" class="external">
+    <i class="fa fa-github"></i>
+  </a>
+  
+  
+  
+</p>
+
+
+    <div class="copyright">
+      <p class="credit">
+        
+          &copy;2019 Matt Leary |
+        
+        Template by <a href="https://bootstrapious.com/free-templates" class="external">Bootstrapious.com</a>
+
+&amp; ported to Hugo by <a href="https://github.com/kishaningithub">Kishan B</a>
+
+      </p>
+    </div>
+  </div>
+</div>
+
+              
+<div class="col-xs-12 col-sm-8 col-md-9 content-column white-background">
+  <div class="small-navbar visible-xs">
+  <button type="button" data-toggle="offcanvas" class="btn btn-ghost pull-left"> <i class="fa fa-align-left"> </i>Menu</button>
+  <h1 class="small-navbar-heading"><a href="/">Hi! I&#39;m Matt</a></h1>
+</div>
+
+  <div class="row">
+    <div class="col-lg-8">
+      <div class="content-column-content">
+         <h1>538 Riddler - Can you parallel park?</h1>
+         
+
+
+<p>This Riddler Express from Oct 9th, 2020 can be found <a href="https://fivethirtyeight.com/features/can-you-parallel-park-your-car/">here</a>.</p>
+<p><em>Every weekend, I drive into town for contactless curbside pickup at a local restaurant. Across the street from the restaurant are six parking spots, lined up in a row. While I can parallel park, it’s definitely not my preference. No parallel parking is required when the rearmost of the six spots is available or when there are two consecutive open spots. If there is a random arrangement of cars currently occupying four of the six spots, what’s the probability that I will have to parallel park?</em></p>
+<div id="my-approach" class="section level2">
+<h2>My approach</h2>
+<p>I decide to attempt this two ways. First, I’ll run a simulation and then I’ll also calculate the probability by creating all possibly parking permutations. This is going to be some quick exploration, so my goal is not to right the <em>best</em> code but rather quickly explore it with the <code>{tidyverse}</code>.</p>
+<p><strong>Note: I can not spell parallel correctly on the first try, no matter how hard I try.</strong> I have no idea why, but it is my eternal shame. I checked this document for misspellings several times, but apologies if I missed it somewhere. FYI, I wrote this after checking it over several times, only to knit the document with it misspelled in the title.</p>
+<div id="setup" class="section level3">
+<h3>Setup</h3>
+<p>A few packages I use along the way…</p>
+<pre class="r"><code>library(dplyr)
+library(tibble)
+library(purrr)
+library(janitor)</code></pre>
+</div>
+</div>
+<div id="running-a-simulation" class="section level2">
+<h2>Running a simulation</h2>
+<p>This was a fun challenge. At work I don’t create simulated data, so I had some false starts on the best way to simulate each trial and capture the output. My initial thought was to quickly create a for loop to run each simulation and append the result to a data frame, but I know that isn’t the best approach. So I decided to use the <code>{purrr}</code> package and explore a more functional programming approach with a map function.</p>
+<div id="helper-functions-such" class="section level3">
+<h3>Helper functions &amp; such</h3>
+<p>I like to keep my helper functions separate to make it easier to (informally) test and debug them.</p>
+<p>I decided to create a quick function to return a randomly generated parking scenario based on the criteria of two empty spots (represented by 0) and four spots with parked cars (represented by 1). I am sure there are cleaner ways to achieve this, but it worked reasonable well and I was focused on speed and accuracy, not necessarily optimization or the prettiest code. I named the columns so they would be easier to work with later on.</p>
+<pre class="r"><code>
+# Create vector of column nams
+column.names &lt;- paste(&quot;space&quot;,1:6, sep= &quot;.&quot;)
+
+# Function that retunrs a simulate parking arrangement.
+# It takes no arguments and returns a numeric vector
+add_simulation_iteration &lt;- function(sim.iteration=1){
+  df.out &lt;- sample(c(0,0,rep(1,4))) %&gt;% 
+    t() %&gt;% 
+    as.data.frame()
+  
+  names(df.out)  &lt;- column.names
+  
+  return(df.out)
+}
+</code></pre>
+</div>
+<div id="solving-it" class="section level3">
+<h3>Solving it</h3>
+<p>With the setup complete, all that was left was to generate simulations and see how often I could parallel park. I went with 100,000 trials. In order to make it easy to change the simulation length, I decided to make that a seperate variable.</p>
+<pre class="r"><code>sim.length &lt;- 100000
+
+sim.results &lt;- purrr::map(1:sim.length, add_simulation_iteration) %&gt;%
+  dplyr::bind_rows()</code></pre>
+<p>As a quick check, I wanted to make sure each row totaled 4 (2 0’s for open spots, 4 1’s for parked cars). Everything appears to check out.</p>
+<pre class="r"><code>sim.results %&gt;% 
+  dplyr::mutate(total.cars = rowSums(.[1:6])) %&gt;% 
+  dplyr::count(total.cars)
+##   total.cars      n
+## 1          4 100000</code></pre>
+<p>Cool, all looks good so now we need to check each simulation. Note I created a simple <code>case_when</code> to check each row/simluation.</p>
+<pre class="r"><code>sim.output &lt;- sim.results %&gt;% 
+  rowwise() %&gt;% 
+  mutate(Parallel.Park = 
+   case_when(
+    space.1 + space.2 == 0 ~ &quot;I can paralell park!&quot;,
+    space.2 + space.3 == 0 ~&quot;I can paralell park!&quot;,
+    space.3 + space.4 == 0 ~ &quot;I can paralell park!&quot;,
+    space.4 + space.5 == 0 ~ &quot;I can paralell park!&quot;,
+    space.6 == 0 ~ &quot;I can paralell park!&quot;,
+    TRUE ~ &quot;Whomp. I have to paralell park.&quot;
+   )
+  )%&gt;% 
+  count(Parallel.Park) %&gt;% 
+  mutate(Percent = n) %&gt;% 
+  janitor::adorn_percentages(&quot;col&quot;,na.rm = T, starts_with(&#39;Percent&#39;))
+
+sim.output
+## # A tibble: 2 x 3
+## # Rowwise: 
+##   Parallel.Park                       n Percent
+##   &lt;chr&gt;                           &lt;int&gt;   &lt;dbl&gt;
+## 1 I can paralell park!            60153   0.602
+## 2 Whomp. I have to paralell park. 39847   0.398</code></pre>
+<p>So there we are. According to the simulation there is a 0.60153 percent chance I will be able to parallel park.</p>
+</div>
+</div>
+<div id="calculating-pure-probabilities" class="section level2">
+<h2>Calculating pure probabilities</h2>
+<p>For fun, I wanted to try this a different way and calculate the pure mathematical odds. This was new for me, I haven’t previously used R to calculate all the potential permutations of a numeric vector. Given my large simulation, I am assuming my results will be roughly0.60153.</p>
+<p>Before I get started, I should make sure I know how many potential permutations there are.</p>
+<pre class="r"><code>
+calculated.result &lt;- factorial(6) / (factorial(4) * factorial(2))
+
+calculated.result
+## [1] 15</code></pre>
+<p>Cool, so I should expect 15 potential permutations. I don’t know the best way to program this in R, so it’s good to have this as a check on my process.</p>
+<pre class="r"><code>program.result &lt;- tidyr::crossing(
+  space.1 = c(0,1),
+  space.2 = c(0,1),
+  space.3 = c(0,1),
+  space.4 = c(0,1),
+  space.5 = c(0,1),
+  space.6 = c(0,1)
+) %&gt;% 
+  dplyr::mutate(total.cars = rowSums(.[1:6])) %&gt;% 
+  filter(total.cars == 4) %&gt;% 
+   mutate(Parallel.Park = 
+     case_when(
+      space.1 + space.2 == 0 ~ &quot;I can paralell park!&quot;,
+      space.2 + space.3 == 0 ~&quot;I can paralell park!&quot;,
+      space.3 + space.4 == 0 ~ &quot;I can paralell park!&quot;,
+      space.4 + space.5 == 0 ~ &quot;I can paralell park!&quot;,
+      space.6 == 0 ~ &quot;I can paralell park!&quot;,
+      TRUE ~ &quot;Whomp. I have to paralell park.&quot;
+     )
+   ) %&gt;% 
+  count(Parallel.Park, name = &quot;Count&quot;) %&gt;% 
+  mutate(Percent = Count / sum(Count))
+
+if(sum(program.result$Count) == 15){
+  program.result
+} else {
+  print(&quot;Hmmm, this conflicts with your calculated result possibilities.&quot;)
+}
+## # A tibble: 2 x 3
+##   Parallel.Park                   Count Percent
+##   &lt;chr&gt;                           &lt;int&gt;   &lt;dbl&gt;
+## 1 I can paralell park!                9     0.6
+## 2 Whomp. I have to paralell park.     6     0.4</code></pre>
+<p>And there you have it. As expected, my simulation results line up with the calculated results.</p>
+</div>
+<div id="improvements" class="section level2">
+<h2>Improvements</h2>
+<ul>
+<li><p>I wrote some quick code with hardcoded values (see “space.1” in my <code>case_when</code> statement). Ideally this would have been more dynamic in case I adjusted variable names.</p></li>
+<li><p>I haven’t used R for generating permutations before. I am sure there is a better way to generate them (and would love to know how).</p></li>
+</ul>
+</div>
+
+         
+      </div>
+    </div>
+  </div>
+</div>
+
+          </div>
+      </div>
+  </div>
+  <script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery.cookie.js"> </script>
+<script src="/js/ekko-lightbox.js"></script>
+<script src="/js/jquery.scrollTo.min.js"></script>
+<script src="/js/masonry.pkgd.min.js"></script>
+<script src="/js/imagesloaded.pkgd.min.js"></script>
+<script src="/js/owl.carousel.min.js"></script>
+<script src="/js/front.js"></script>
+
+
+
+</body>
+</html>
