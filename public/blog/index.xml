@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blogs on Hi! I&#39;m Matt</title>
+    <link>/blog/</link>
+    <description>Recent content in Blogs on Hi! I&#39;m Matt</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 10 Oct 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/blog/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>538 Riddler - Can you parallel park?</title>
+      <link>/blog/2020-10-10-riddler-parralel-park/</link>
+      <pubDate>Sat, 10 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2020-10-10-riddler-parralel-park/</guid>
+      <description>This Riddler Express from Oct 9th, 2020 can be found here.
+Every weekend, I drive into town for contactless curbside pickup at a local restaurant. Across the street from the restaurant are six parking spots, lined up in a row. While I can parallel park, it’s definitely not my preference. No parallel parking is required when the rearmost of the six spots is available or when there are two consecutive open spots.</description>
+    </item>
+    
+    <item>
+      <title>Solving Riddle(r)s</title>
+      <link>/blog/2020-07-04-solving-riddle-r-s/</link>
+      <pubDate>Sat, 04 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2020-07-04-solving-riddle-r-s/</guid>
+      <description>As I look back on my blog, I can see that I have written two blog posts in the past year. Clearly, I am killig it with this blog thing.
+I realized I could include some of my work solving Riddlers. For those unfamiliar, fivethirtyeight produces a regular puzzle challenge called The Riddler. While many can be solved with basic math and logic, I’ve used these as opportunities to practice/improve my coding in R and Python.</description>
+    </item>
+    
+    <item>
+      <title>Tidyverse tips I forget about</title>
+      <link>/blog/2020-02-24-tidyverse/</link>
+      <pubDate>Sun, 01 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2020-02-24-tidyverse/</guid>
+      <description>The tidyverse is an opinionated collection of R packages designed for data science. I am a regular user of the tidyverse, and that means I know two things. First, almost any data manipulation, data visualization, or data modeling problem can be solved with the tidyverse. Second, I regularly have to search Google or StackOverflow to remember which package to use or the parameters of a given function.
+This post is a place for me to log my own tips for the tidyverse features and functions I use regularly.</description>
+    </item>
+    
+    <item>
+      <title>Creating my resume with the pagedown package</title>
+      <link>/blog/2020-01-04-pagedown_resume/</link>
+      <pubDate>Sat, 04 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2020-01-04-pagedown_resume/</guid>
+      <description>Yihui Xie &amp;amp; Romain Lesur’s pagedown package allows users to create paged HTML documents that can be easily printed as PDFs. This includes RMarkdown templates that let you create letters, business cards, and most importantly resumes. I previously explored using pagedown for my resume and was impressed with the unique look it provided. That said, I never actually finished my exploration and I recently wanted to go back to pagedown and create a new resume.</description>
+    </item>
+    
+    <item>
+      <title>Accessing Trello with trelloR</title>
+      <link>/blog/2019-07-03-trelloapi/</link>
+      <pubDate>Sat, 13 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2019-07-03-trelloapi/</guid>
+      <description>Why I wanted to Access Trello dataMy work transitioned to an agile format and we’ve used Trello to track and monitor our sprints. Our scrum master was tracking our hoursby looking at our Trello sprint board and manually updating a spreadshhet. Since we are constantly updating our sprint board, I thought I would look at ways to automate that process for him.
+As expected, someone had already built an R package for accessing data from Trello via the Trello API.</description>
+    </item>
+    
+    <item>
+      <title>Who wants to play in the Champions Leauge?</title>
+      <link>/blog/2019-05-07-champions_league/</link>
+      <pubDate>Fri, 17 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2019-05-07-champions_league/</guid>
+      <description>The 2018-2019 Premier League season has officially come to a close. While Manchester City and Liverpool battled for the top two positions, the race to secure Champions League football by finishing in 3rd and 4th place was up for grabs. Chelsea, Tottenham, Arsenal and Manchester United all had oppurtunites to move into the top four , but all four teams have struggled in form. In the end, Chelsea and Tottenham finsihed in 3rd and 4th, but it was certainly far from certain for both team.</description>
+    </item>
+    
+  </channel>
+</rss>

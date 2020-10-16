@@ -1,0 +1,173 @@
+---
+title: "538 Riddler - Can you parallel park?"
+author: 'Matt Leary'
+date: '2020-10-10'
+image: img/portfolio/riddler.png
+showonlyimage: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE,
+                      warning  = FALSE,
+                      message  = FALSE)
+```
+
+This Riddler Express from Oct 9th, 2020 can be found [here](https://fivethirtyeight.com/features/can-you-parallel-park-your-car/).
+
+*Every weekend, I drive into town for contactless curbside pickup at a local restaurant. Across the street from the restaurant are six parking spots, lined up in a row. While I can parallel park, it’s definitely not my preference. No parallel parking is required when the rearmost of the six spots is available or when there are two consecutive open spots. If there is a random arrangement of cars currently occupying four of the six spots, what’s the probability that I will have to parallel park?*
+
+## My approach
+
+I decide to attempt this two ways.  First, I'll run a simulation and then I'll also calculate the probability by creating all possibly parking permutations.  This is going to be some quick exploration, so my goal is not to right the *best* code but rather quickly explore it with the `{tidyverse}`.
+
+**Note:  I can not spell parallel correctly on the first try, no matter how hard I try.**  I have no idea why, but it is my eternal shame.  I checked this document for misspellings several times, but apologies if I missed it somewhere.  FYI, I wrote this after checking it over several times, only to knit the document with it misspelled in the title.
+
+
+### Setup
+
+A few packages I use along the way... 
+
+```{r}
+library(dplyr)
+library(tibble)
+library(purrr)
+library(janitor)
+
+```
+
+## Running a simulation
+
+This was a fun challenge. At work I don't create simulated data, so I had some false starts on the best way to simulate each trial and capture the output. My initial thought was to quickly create a  for loop to run each simulation and append the result to a data frame, but I know that isn't the best approach.  So I decided to use the `{purrr}` package and explore a more functional programming approach with a map function.
+
+
+
+### Helper functions & such
+
+I like to keep my helper functions separate to make it easier to (informally) test and debug them.  
+
+I decided to create a quick function to return a randomly generated parking scenario based on the criteria of two empty spots (represented by 0) and four spots with parked cars (represented by 1).  I am sure there are cleaner ways to achieve this, but it worked reasonable well and I was focused on speed and accuracy, not necessarily optimization or the prettiest code.  I named the columns so they would be easier to work with later on.
+
+
+```{r}
+
+# Create vector of column nams
+column.names <- paste("space",1:6, sep= ".")
+
+# Function that retunrs a simulate parking arrangement.
+# It takes no arguments and returns a numeric vector
+add_simulation_iteration <- function(sim.iteration=1){
+  df.out <- sample(c(0,0,rep(1,4))) %>% 
+    t() %>% 
+    as.data.frame()
+  
+  names(df.out)  <- column.names
+  
+  return(df.out)
+}
+
+
+```
+
+
+### Solving it
+
+With the setup complete, all that was left was to generate simulations and see how often I could parallel park.  I went with 100,000 trials.  In order to make it easy to change the simulation length, I decided to make that a seperate variable.
+
+```{r}
+sim.length <- 100000
+
+sim.results <- purrr::map(1:sim.length, add_simulation_iteration) %>%
+  dplyr::bind_rows()
+```
+
+As a quick check, I wanted to make sure each row totaled 4 (2 0's for open spots, 4 1's for parked cars).  Everything appears to check out.
+
+```{r}
+sim.results %>% 
+  dplyr::mutate(total.cars = rowSums(.[1:6])) %>% 
+  dplyr::count(total.cars)
+```
+
+Cool, all looks good so now we need to check each simulation.  Note I created a simple `case_when` to check each row/simluation.
+ 
+```{r}
+sim.output <- sim.results %>% 
+  rowwise() %>% 
+  mutate(Parallel.Park = 
+   case_when(
+    space.1 + space.2 == 0 ~ "I can paralell park!",
+    space.2 + space.3 == 0 ~"I can paralell park!",
+    space.3 + space.4 == 0 ~ "I can paralell park!",
+    space.4 + space.5 == 0 ~ "I can paralell park!",
+    space.6 == 0 ~ "I can paralell park!",
+    TRUE ~ "Whomp. I have to paralell park."
+   )
+  )%>% 
+  count(Parallel.Park) %>% 
+  mutate(Percent = n) %>% 
+  janitor::adorn_percentages("col",na.rm = T, starts_with('Percent'))
+
+sim.output
+```
+ 
+So there we are.  According to the simulation there is a `r sim.output$Percent[1]` percent chance I will be able to parallel park.
+
+## Calculating pure probabilities
+
+For fun, I wanted to try this a different way and calculate the pure mathematical odds. This was new for me, I haven't previously used R to calculate all the potential permutations of a numeric vector. Given my large simulation, I am assuming my results will be roughly`r sim.output$Percent[1]`.
+
+Before I get started, I should make sure I know how many potential permutations there are. 
+
+```{r}
+
+calculated.result <- factorial(6) / (factorial(4) * factorial(2))
+
+calculated.result
+
+```
+
+Cool, so I should expect `r calculated.result` potential permutations.  I don't know the best way to program this in R, so it's good to have this as a check on my process.
+
+```{r}
+program.result <- tidyr::crossing(
+  space.1 = c(0,1),
+  space.2 = c(0,1),
+  space.3 = c(0,1),
+  space.4 = c(0,1),
+  space.5 = c(0,1),
+  space.6 = c(0,1)
+) %>% 
+  dplyr::mutate(total.cars = rowSums(.[1:6])) %>% 
+  filter(total.cars == 4) %>% 
+   mutate(Parallel.Park = 
+     case_when(
+      space.1 + space.2 == 0 ~ "I can paralell park!",
+      space.2 + space.3 == 0 ~"I can paralell park!",
+      space.3 + space.4 == 0 ~ "I can paralell park!",
+      space.4 + space.5 == 0 ~ "I can paralell park!",
+      space.6 == 0 ~ "I can paralell park!",
+      TRUE ~ "Whomp. I have to paralell park."
+     )
+   ) %>% 
+  count(Parallel.Park, name = "Count") %>% 
+  mutate(Percent = Count / sum(Count))
+
+if(sum(program.result$Count) == 15){
+  program.result
+} else {
+  print("Hmmm, this conflicts with your calculated result possibilities.")
+}
+
+
+  
+```
+
+And there you have it.  As expected, my simulation results line up with the calculated results.
+
+## Improvements
+
+* I wrote some quick code with hardcoded values (see "space.1" in my `case_when` statement).  Ideally this would have been more dynamic in case I adjusted variable names.
+
+* I haven't used R for generating permutations before.  I am sure there is a better way to generate them (and would love to know how). 
+
+
