@@ -95,11 +95,11 @@ sim.output <- sim.results %>%
   rowwise() %>% 
   mutate(Parallel.Park = 
    case_when(
-    space.1 + space.2 == 0 ~ "I can paralell park!",
-    space.2 + space.3 == 0 ~"I can paralell park!",
-    space.3 + space.4 == 0 ~ "I can paralell park!",
-    space.4 + space.5 == 0 ~ "I can paralell park!",
-    space.6 == 0 ~ "I can paralell park!",
+    space.1 + space.2 == 0 ~ "I don't have to paralell park!",
+    space.2 + space.3 == 0 ~"I don't have to paralell park!",
+    space.3 + space.4 == 0 ~ "I don't have to paralell park!",
+    space.4 + space.5 == 0 ~ "I don't have to paralell park!",
+    space.6 == 0 ~ "I don't have to paralell park!",
     TRUE ~ "Whomp. I have to paralell park."
    )
   )%>% 
@@ -110,7 +110,7 @@ sim.output <- sim.results %>%
 sim.output
 ```
  
-So there we are.  According to the simulation there is a `r sim.output$Percent[1]` percent chance I will be able to parallel park.
+So there we are.  According to the simulation there is a `r sim.output$Percent[1]` percent chance I won't have to paralell park.
 
 ## Calculating pure probabilities
 
@@ -142,10 +142,10 @@ program.result <- tidyr::crossing(
    mutate(Parallel.Park = 
      case_when(
       space.1 + space.2 == 0 ~ "I can paralell park!",
-      space.2 + space.3 == 0 ~"I can paralell park!",
-      space.3 + space.4 == 0 ~ "I can paralell park!",
-      space.4 + space.5 == 0 ~ "I can paralell park!",
-      space.6 == 0 ~ "I can paralell park!",
+      space.2 + space.3 == 0 ~"I don't have to paralell park!",
+      space.3 + space.4 == 0 ~ "I don't have to paralell park!",
+      space.4 + space.5 == 0 ~ "I don't have to paralell park!",
+      space.6 == 0 ~ "I don't have to paralell park!",
       TRUE ~ "Whomp. I have to paralell park."
      )
    ) %>% 
