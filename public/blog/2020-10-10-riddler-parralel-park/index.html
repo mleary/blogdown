@@ -189,14 +189,14 @@ sim.output
 ## # Rowwise: 
 ##   Parallel.Park                       n Percent
 ##   &lt;chr&gt;                           &lt;int&gt;   &lt;dbl&gt;
-## 1 I don&#39;t have to paralell park!  59583   0.596
-## 2 Whomp. I have to paralell park. 40417   0.404</code></pre>
-<p>So there we are. According to the simulation there is a 0.59583 percent chance I won’t have to paralell park.</p>
+## 1 I don&#39;t have to paralell park!  60114   0.601
+## 2 Whomp. I have to paralell park. 39886   0.399</code></pre>
+<p>So there we are. According to the simulation there is a 0.60114 percent chance I won’t have to paralell park.</p>
 </div>
 </div>
 <div id="calculating-pure-probabilities" class="section level2">
 <h2>Calculating pure probabilities</h2>
-<p>For fun, I wanted to try this a different way and calculate the pure mathematical odds. This was new for me, I haven’t previously used R to calculate all the potential permutations of a numeric vector. Given my large simulation, I am assuming my results will be roughly0.59583.</p>
+<p>For fun, I wanted to try this a different way and calculate the pure mathematical odds. This was new for me, I haven’t previously used R to calculate all the potential permutations of a numeric vector. Given my large simulation, I am assuming my results will be roughly0.60114.</p>
 <p>Before I get started, I should make sure I know how many potential permutations there are.</p>
 <pre class="r"><code>
 calculated.result &lt;- factorial(6) / (factorial(4) * factorial(2))
@@ -216,8 +216,8 @@ calculated.result
   filter(total.cars == 4) %&gt;% 
    mutate(Parallel.Park = 
      case_when(
-      space.1 + space.2 == 0 ~ &quot;I can paralell park!&quot;,
-      space.2 + space.3 == 0 ~&quot;I don&#39;t have to paralell park!&quot;,
+      space.1 + space.2 == 0 ~ &quot;I don&#39;t have to paralell park!&quot;,
+      space.2 + space.3 == 0 ~ &quot;I don&#39;t have to paralell park!&quot;,
       space.3 + space.4 == 0 ~ &quot;I don&#39;t have to paralell park!&quot;,
       space.4 + space.5 == 0 ~ &quot;I don&#39;t have to paralell park!&quot;,
       space.6 == 0 ~ &quot;I don&#39;t have to paralell park!&quot;,
@@ -232,12 +232,11 @@ if(sum(program.result$Count) == 15){
 } else {
   print(&quot;Hmmm, this conflicts with your calculated result possibilities.&quot;)
 }
-## # A tibble: 3 x 3
+## # A tibble: 2 x 3
 ##   Parallel.Park                   Count Percent
 ##   &lt;chr&gt;                           &lt;int&gt;   &lt;dbl&gt;
-## 1 I can paralell park!                1  0.0667
-## 2 I don&#39;t have to paralell park!      8  0.533 
-## 3 Whomp. I have to paralell park.     6  0.4</code></pre>
+## 1 I don&#39;t have to paralell park!      9     0.6
+## 2 Whomp. I have to paralell park.     6     0.4</code></pre>
 <p>And there you have it. As expected, my simulation results line up with the calculated results.</p>
 </div>
 <div id="improvements" class="section level2">

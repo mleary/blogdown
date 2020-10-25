@@ -141,8 +141,8 @@ program.result <- tidyr::crossing(
   filter(total.cars == 4) %>% 
    mutate(Parallel.Park = 
      case_when(
-      space.1 + space.2 == 0 ~ "I can paralell park!",
-      space.2 + space.3 == 0 ~"I don't have to paralell park!",
+      space.1 + space.2 == 0 ~ "I don't have to paralell park!",
+      space.2 + space.3 == 0 ~ "I don't have to paralell park!",
       space.3 + space.4 == 0 ~ "I don't have to paralell park!",
       space.4 + space.5 == 0 ~ "I don't have to paralell park!",
       space.6 == 0 ~ "I don't have to paralell park!",
